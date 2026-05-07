@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92BWH0K0ML"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-92BWH0K0ML');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSF Comparison | Elephant Movement Analysis</title>
+    <meta name="description" content="Interactive RSF habitat selection comparison across BACI study periods">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/rsf-comparison.css">
+    <!-- Spatial Capture Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <script>if(localStorage.getItem('theme')==='light') document.body.classList.add('light-theme');</script>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <span class="brand-text">Elephant Movement Analysis</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Overview</a></li>
+                <li><a href="methodology.html" class="nav-link">Methodology</a></li>
+                <li><a href="explorer.html" class="nav-link">Trajectory Explorer</a></li>
+                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
+                <li><a href="ghost-fence.html" class="nav-link">Ghost Fence</a></li>
+                <li><a href="rsf-comparison.html" class="nav-link active">RSF Comparison</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+                <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:block; width:20px; height:20px;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="rsf-global-container"
+        style="margin-top: 72px; padding: 20px; background: var(--color-bg-primary); min-height: calc(100vh - 72px); display: flex; flex-direction: column;">
+        <!-- Global Top Controls -->
+        <div class="global-controls" style="position: sticky; top: 72px; z-index: 1010; display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; padding: 10px 20px; background: rgba(26, 34, 30, 0.95); backdrop-filter: blur(10px); border-radius: var(--radius-lg); border: 1px solid var(--glass-border); margin-bottom: 20px; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+
+            <!-- LEFT: Layer Toggles -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+                <h3 style="font-size: 0.7rem; color: var(--color-text-secondary); text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">Layers</h3>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <button class="layer-toggle-btn active" data-layer="rsf" title="Toggle RSF heatmap overlay"><span class="ltb-dot" style="background:#c084fc;"></span> RSF Overlay</button>
+                    <button class="layer-toggle-btn active" data-layer="studyArea" title="Toggle study area boundary"><span class="ltb-dot" style="background:#FFD700;"></span> Study Area</button>
+                    <button class="layer-toggle-btn active" data-layer="homeRange" title="Toggle home-range boundary (PRE only)"><span class="ltb-dot" style="background:#ffffff;"></span> Home Range</button>
+                    <button class="layer-toggle-btn active" data-layer="fence" title="Toggle ghost fence (PRE only)"><span class="ltb-dot" style="background:#FF4444;"></span> Fence</button>
+                </div>
+            </div>
+
+            <!-- CENTRE: Behavioral State -->
+            <div class="control-group" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <h3 style="font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; margin: 0;">Behavioral State</h3>
+                <div class="behavior-selector" style="display: flex; gap: 8px; justify-content: center;">
+                    <button class="behavior-btn" data-behavior="Resting" style="padding: 6px 12px; font-size: 0.8rem; flex-direction: row;">Resting</button>
+                    <button class="behavior-btn" data-behavior="Low-energy" style="padding: 6px 12px; font-size: 0.8rem; flex-direction: row;">Low-energy</button>
+                    <button class="behavior-btn active" data-behavior="Foraging" style="padding: 6px 12px; font-size: 0.8rem; flex-direction: row;">Foraging</button>
+                    <button class="behavior-btn" data-behavior="Movement" style="padding: 6px 12px; font-size: 0.8rem; flex-direction: row;">Movement</button>
+                </div>
+            </div>
+
+            <!-- RIGHT: Map Type -->
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+                <h3 style="font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">Map Type</h3>
+                <div class="map-type-selector" style="display: flex; gap: 8px;">
+                    <button class="map-type-btn active" data-type="Realized" style="padding: 6px 12px; font-size: 0.8rem;">Realized</button>
+                    <button class="map-type-btn" data-type="Usage" style="padding: 6px 12px; font-size: 0.8rem;">Usage</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Elephant Rows Container -->
+        <div class="map-grid-container" style="flex: 1; display: flex; flex-direction: column; gap: 40px;">
+
+            <style>
+                .elephant-row {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                    background: var(--color-bg-secondary);
+                    border: 1px solid var(--glass-border);
+                    border-radius: var(--radius-lg);
+                    padding: 20px;
+                }
+
+                .elephant-sidebar {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    background: rgba(0, 0, 0, 0.2);
+                    border-radius: 8px;
+                    padding: 15px;
+                }
+
+                .elephant-images {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 10px;
+                    margin-bottom: 5px;
+                }
+
+                .elephant-sidebar img {
+                    width: 100%;
+                    height: 160px;
+                    object-fit: cover;
+                    border-radius: 6px;
+                    border: 1px solid var(--glass-border);
+                    background: rgba(0, 0, 0, 0.4);
+                }
+
+                .elephant-stats h3 {
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                    font-size: 1.2rem;
+                    color: var(--color-primary);
+                }
+
+                .stat-block {
+                    margin-bottom: 15px;
+                    font-size: 0.85rem;
+                }
+
+                .stat-block h4 {
+                    margin: 0 0 5px 0;
+                    color: var(--color-text-secondary);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    padding-bottom: 3px;
+                }
+
+                .stat-list {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .stat-list li {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 3px;
+                    color: var(--color-text-tertiary);
+                }
+
+                .map-cell {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .map-canvas {
+                    aspect-ratio: 1 / 1;
+                    width: 100%;
+                    height: auto;
+                    background: #1a1a1a;
+                    border-radius: 8px;
+                }
+
+
+            </style>
+
+            <!-- FEMALES -->
+            <!-- E3 Bukela -->
+            <div class="elephant-row">
+                <div class="elephant-sidebar" id="sidebar-e3">
+                    <div class="elephant-images">
+                        <img src="elephants/Bukela_1.jpg" alt="E3 Bukela 1">
+                        <img src="elephants/Bukela_2.jpg" alt="E3 Bukela 2">
+                    </div>
+                    <div class="elephant-stats">
+                        <h3>E3 Bukela (Female)</h3>
+                        <div class="habitat-stats" style="margin-top: 15px; font-size: 0.8rem;">
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                PRE Range (482 days)</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 6px;">
+                                <span>🌿 Foraging: 30.2%</span>
+                                <span>💤 Low-energy: 27.5%</span>
+                                <span>🚶 Movement: 11.7%</span>
+                                <span>🛌 Resting: 25.2%</span>
+                            </div>
+                            <h4
+                                style="margin: 4px 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                POST Range (605 days)</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 8px;">
+                                <span>🌿 Foraging: 32.1%</span>
+                                <span>💤 Low-energy: 27.0%</span>
+                                <span style="color: #6fcf97; font-weight:600;">🚶 Movement: 17.6% ↑</span>
+                                <span>🛌 Resting: 22.4%</span>
+                            </div>
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                Habitat Expansion (H2O vs SSDM)</h4>
+                            <div style="margin-bottom: 8px;">
+                                <div style="color: var(--color-text-secondary); font-size: 0.7rem; margin-bottom: 2px;">
+                                    PRE Period</div>
+                                <div
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem;">
+                                    <span>Jaccard: 0.797</span>
+                                    <span>Agreement: 8.81 km²</span>
+                                    <span>H2O: 9.91 km²</span>
+                                    <span>SSDM: 9.96 km²</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="color: var(--color-text-secondary); font-size: 0.7rem; margin-bottom: 2px;">
+                                    POST Period</div>
+                                <div
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem;">
+                                    <span>Jaccard: 0.792</span>
+                                    <span>Agreement: 24.24 km²</span>
+                                    <span>H2O: 26.60 km²</span>
+                                    <span>SSDM: 28.25 km²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E3 Bukela - PRE</span>
+                    </div>
+                    <div id="map-e3-pre" class="map-canvas"></div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E3 Bukela - POST</span>
+                    </div>
+                    <div id="map-e3-post" class="map-canvas"></div>
+                </div>
+            </div>
+
+            <!-- E4 Half Moon -->
+            <div class="elephant-row">
+                <div class="elephant-sidebar" id="sidebar-e4">
+                    <div class="elephant-images">
+                        <img src="elephants/Half_moon_1.jpg" alt="E4 Half Moon 1">
+                        <img src="elephants/Half Moon_2.jpg.png" alt="E4 Half Moon 2">
+                    </div>
+                    <div class="elephant-stats">
+                        <h3>E4 Half Moon (Female)</h3>
+                        <div class="habitat-stats" style="margin-top: 15px; font-size: 0.8rem;">
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                PRE Range (482 days)</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 6px;">
+                                <span>🌿 Foraging: 33.8%</span>
+                                <span>💤 Low-energy: 30.5%</span>
+                                <span>🚶 Movement: 12.5%</span>
+                                <span>🛌 Resting: 20.4%</span>
+                            </div>
+                            <h4
+                                style="margin: 4px 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                POST Range (684 days)</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 8px;">
+                                <span>🌿 Foraging: 33.8%</span>
+                                <span>💤 Low-energy: 27.0%</span>
+                                <span style="color: #6fcf97; font-weight:600;">🚶 Movement: 22.0% ↑↑</span>
+                                <span>🛌 Resting: 16.9%</span>
+                            </div>
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                Habitat Expansion (H2O vs SSDM)</h4>
+                            <div style="margin-bottom: 8px;">
+                                <div style="color: var(--color-text-secondary); font-size: 0.7rem; margin-bottom: 2px;">
+                                    PRE Period</div>
+                                <div
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem;">
+                                    <span>Jaccard: 0.722</span>
+                                    <span>Agreement: 8.06 km²</span>
+                                    <span>H2O: 9.22 km²</span>
+                                    <span>SSDM: 10.02 km²</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="color: var(--color-text-secondary); font-size: 0.7rem; margin-bottom: 2px;">
+                                    POST Period</div>
+                                <div
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem;">
+                                    <span>Jaccard: 0.458</span>
+                                    <span>Agreement: 27.26 km²</span>
+                                    <span>H2O: 59.58 km²</span>
+                                    <span>SSDM: 27.26 km²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E4 Half Moon - PRE</span>
+                    </div>
+                    <div id="map-e4-pre" class="map-canvas"></div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E4 Half Moon - POST</span>
+                    </div>
+                    <div id="map-e4-post" class="map-canvas"></div>
+                </div>
+            </div>
+
+            <!-- E5 Beauty -->
+            <div class="elephant-row">
+                <div class="elephant-sidebar" id="sidebar-e5">
+                    <div class="elephant-images">
+                        <img src="elephants/Beauty_1.jpg" alt="E5 Beauty 1">
+                        <img src="elephants/Beauty_2.jpg" alt="E5 Beauty 2">
+                    </div>
+                    <div class="elephant-stats">
+                        <h3>E5 Beauty (Female)</h3>
+                        <div class="habitat-stats" style="margin-top: 15px; font-size: 0.8rem;">
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                PRE Range (473 days)</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 6px;">
+                                <span>🌿 Foraging: 33.4%</span>
+                                <span>💤 Low-energy: 39.3%</span>
+                                <span>🚶 Movement: 4.3%</span>
+                                <span>🛌 Resting: 22.7%</span>
+                            </div>
+                            <h4
+                                style="margin: 4px 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                POST Range (675 days)</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 8px;">
+                                <span>🌿 Foraging: 29.2%</span>
+                                <span>💤 Low-energy: 13.7%</span>
+                                <span style="color: #6fcf97; font-weight:600;">🚶 Movement: 53.3% ↑↑↑</span>
+                                <span>🛌 Resting: 3.5%</span>
+                            </div>
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                Habitat Expansion (H2O vs SSDM)</h4>
+                            <div style="margin-bottom: 8px;">
+                                <div style="color: var(--color-text-secondary); font-size: 0.7rem; margin-bottom: 2px;">
+                                    PRE Period</div>
+                                <div
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem;">
+                                    <span>Jaccard: 0.674</span>
+                                    <span>Agreement: 10.77 km²</span>
+                                    <span>H2O: 14.62 km²</span>
+                                    <span>SSDM: 12.12 km²</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="color: var(--color-text-secondary); font-size: 0.7rem; margin-bottom: 2px;">
+                                    POST Period</div>
+                                <div
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem;">
+                                    <span>Jaccard: 0.630</span>
+                                    <span>Agreement: 12.40 km²</span>
+                                    <span>H2O: 18.42 km²</span>
+                                    <span>SSDM: 13.68 km²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E5 Beauty - PRE</span>
+                    </div>
+                    <div id="map-e5-pre" class="map-canvas"></div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E5 Beauty - POST</span>
+                    </div>
+                    <div id="map-e5-post" class="map-canvas"></div>
+                </div>
+            </div>
+
+            <!-- MALES -->
+            <!-- E1 Kamva -->
+            <div class="elephant-row">
+                <div class="elephant-sidebar" id="sidebar-e1">
+                    <div class="elephant-images">
+                        <img src="elephants/Kamva_1.png" alt="E1 Kamva 1">
+                        <img src="elephants/Kamva_2.png" alt="E1 Kamva 2">
+                    </div>
+                    <div class="elephant-stats">
+                        <h3>E1 Kamva (Male)</h3>
+                        <div class="habitat-stats" style="margin-top: 12px; font-size: 0.8rem;">
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                PRE Phase — 259 days</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 8px;">
+                                <span>🌿 Foraging: 38.5%</span>
+                                <span>💤 Low-energy: 22.2%</span>
+                                <span>🌙 Resting: 21.0%</span>
+                                <span>🚶 Movement: 14.5%</span>
+                            </div>
+                            <div style="color: var(--color-text-secondary); font-size: 0.68rem; font-style: italic;">KW
+                                only — PRE tracking period</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E1 Kamva - PRE</span>
+                    </div>
+                    <div id="map-e1-pre" class="map-canvas"></div>
+                </div>
+                <div class="map-cell" style="visibility: hidden;">
+                    <!-- Empty 3rd column for alignment -->
+                </div>
+            </div>
+
+            <!-- E2 Kambaku -->
+            <div class="elephant-row">
+                <div class="elephant-sidebar" id="sidebar-e2">
+                    <div class="elephant-images">
+                        <img src="elephants/Kambaku_1.jpg" alt="E2 Kambaku 1">
+                        <img src="elephants/Kambaku_2.jpg" alt="E2 Kambaku 2">
+                    </div>
+                    <div class="elephant-stats">
+                        <h3>E2 Kambaku (Male)</h3>
+                        <div class="habitat-stats" style="margin-top: 12px; font-size: 0.8rem;">
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                PRE Phase — 217 days</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 8px;">
+                                <span>🌿 Foraging: 31.2%</span>
+                                <span>💤 Low-energy: 30.4%</span>
+                                <span>🌙 Resting: 20.6%</span>
+                                <span>🚶 Movement: 14.9%</span>
+                            </div>
+                            <div style="color: var(--color-text-secondary); font-size: 0.68rem; font-style: italic;">KW
+                                only — PRE tracking period</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E2 Kambaku - PRE</span>
+                    </div>
+                    <div id="map-e2-pre" class="map-canvas"></div>
+                </div>
+                <div class="map-cell" style="visibility: hidden;"></div>
+            </div>
+
+            <!-- E6 Balu -->
+            <div class="elephant-row">
+                <div class="elephant-sidebar" id="sidebar-e6">
+                    <div class="elephant-images">
+                        <img src="elephants/Balu_1.jpg" alt="E6 Balu 1">
+                        <img src="elephants/Balu_2.jpg" alt="E6 Balu 2">
+                    </div>
+                    <div class="elephant-stats">
+                        <h3>E6 Balu (Male)</h3>
+                        <div class="habitat-stats" style="margin-top: 12px; font-size: 0.8rem;">
+                            <h4
+                                style="margin: 0 0 5px 0; color: var(--color-primary); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+                                PRE Phase — 453 days</h4>
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary); font-size: 0.7rem; margin-bottom: 8px;">
+                                <span>🌿 Foraging: 38.3%</span>
+                                <span>💤 Low-energy: 27.0%</span>
+                                <span>🌙 Resting: 23.8%</span>
+                                <span>🚶 Movement: 10.5%</span>
+                            </div>
+                            <div style="color: var(--color-text-secondary); font-size: 0.68rem; font-style: italic;">HV
+                                origin — PRE tracking period</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-cell">
+                    <div class="map-cell-header"
+                        style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: 600;">E6 Balu - PRE</span>
+                    </div>
+                    <div id="map-e6-pre" class="map-canvas"></div>
+                </div>
+                <div class="map-cell" style="visibility: hidden;"></div>
+            </div>
+        </div>
+
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading RSF Maps...</div>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.sync@0.2.4/L.Map.Sync.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/rsf-comparison.js"></script>
+        <script src="js/theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+﻿{
+  "hmm_parameters": {
+    "Resting": {
+      "step_length_m": 1.2,
+      "turning_angle": "Random (\u03c0)",
+      "concentration_kappa": 0.05,
+      "description": "Static (<10m) + Nocturnal temporal clustering"
+    },
+    "Resting_LowEnergy": {
+      "step_length_m": 8.0,
+      "turning_angle": "Random (\u03c0)",
+      "concentration_kappa": 0.20,
+      "description": "Short steps + High angles (Maintenance/Nurturing)"
+    },
+    "Foraging": {
+      "step_length_m": 60.0,
+      "turning_angle": "Random (\u03c0)",
+      "concentration_kappa": 0.40,
+      "description": "Medium steps + Mod. angles (Search tortuosity)"
+    },
+    "Movement": {
+      "step_length_m": 250.0,
+      "turning_angle": "Directed (0\u00b0)",
+      "concentration_kappa": 0.60,
+      "description": "Long steps + Low angles (Directed relocation)"
+    }
+  },
+  "seasonal_activity_budget_pct": {
+    "Spring": { "Foraging": 34.9, "Resting": 27.3, "Resting": 20.2, "Movement": 15.5, "Bounce": 2.0 },
+    "Summer": { "Foraging": 32.2, "Resting": 30.3, "Resting": 20.7, "Movement": 13.3, "Bounce": 3.3 },
+    "Autumn": { "Foraging": 33.7, "Resting": 28.0, "Resting": 21.6, "Movement": 15.6, "Bounce": 1.1 },
+    "Winter": { "Foraging": 33.4, "Resting": 28.9, "Resting": 22.4, "Movement": 13.7, "Bounce": 1.7 }
+  },
+  "daily_activity_budget_pct": {
+    "Day": { "Foraging": 42.1, "Resting": 26.1, "Movement": 20.8, "Resting": 9.3, "Bounce": 1.7 },
+    "Night": { "Resting": 33.0, "Resting": 31.1, "Foraging": 25.1, "Movement": 8.4, "Bounce": 2.5 }
+  },
+  "demographic_comparison_pct": {
+    "Males_Overall_PRE": {
+      "Foraging": 36.7,
+      "Resting": 26.5,
+      "Resting": 22.3,
+      "Movement": 12.7,
+      "Bounce": 1.9,
+      "note": "E1, E2, E6 - Only tracked during PRE phase"
+    },
+    "Females_Overall_PRE": {
+      "Foraging": 32.4,
+      "Resting": 32.0,
+      "Resting": 22.8,
+      "Movement": 9.9,
+      "Bounce": 3.0,
+      "note": "E3, E4, E5"
+    },
+    "Females_Overall_POST": {
+      "Foraging": 32.8,
+      "Resting": 26.4,
+      "Movement": 21.4,
+      "Resting": 18.8,
+      "Bounce": 0.6,
+      "note": "E3, E4, E5 - Expanded spatial usage post-fencing"
+    }
+  }
+}

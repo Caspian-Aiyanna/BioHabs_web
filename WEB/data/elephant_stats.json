@@ -1,0 +1,228 @@
+﻿{
+  "E1": {
+    "PRE": {
+      "behaviors": {
+        "Bounce": 460,
+        "Foraging": 4744,
+        "Low-energy": 2742,
+        "Resting": 2588,
+        "Movement": 1792
+      },
+      "total_count": 12326,
+      "duration_days": 259,
+      "percentages": {
+        "Bounce": 3.7,
+        "Foraging": 38.5,
+        "Low-energy": 22.2,
+        "Resting": 21.0,
+        "Movement": 14.5
+      }
+    }
+  },
+  "E2": {
+    "PRE": {
+      "behaviors": {
+        "Bounce": 286,
+        "Foraging": 3223,
+        "Low-energy": 3135,
+        "Movement": 1542,
+        "Resting": 2129
+      },
+      "total_count": 10315,
+      "duration_days": 217,
+      "percentages": {
+        "Bounce": 2.8,
+        "Foraging": 31.2,
+        "Low-energy": 30.4,
+        "Movement": 14.9,
+        "Resting": 20.6
+      }
+    }
+  },
+  "E3": {
+    "INTERIM": {
+      "behaviors": {
+        "Foraging": 882,
+        "Low-energy": 772,
+        "Movement": 359,
+        "Resting": 592,
+        "Bounce": 55
+      },
+      "total_count": 2660,
+      "duration_days": 66,
+      "percentages": {
+        "Foraging": 33.2,
+        "Low-energy": 29.0,
+        "Movement": 13.5,
+        "Resting": 22.3,
+        "Bounce": 2.1
+      }
+    },
+    "POST": {
+      "behaviors": {
+        "Foraging": 8109,
+        "Low-energy": 6837,
+        "Movement": 4446,
+        "Resting": 5669,
+        "Bounce": 215
+      },
+      "total_count": 25276,
+      "duration_days": 605,
+      "percentages": {
+        "Foraging": 32.1,
+        "Low-energy": 27.0,
+        "Movement": 17.6,
+        "Resting": 22.4,
+        "Bounce": 0.9
+      }
+    },
+    "PRE": {
+      "behaviors": {
+        "Bounce": 1186,
+        "Foraging": 6731,
+        "Low-energy": 6140,
+        "Resting": 5616,
+        "Movement": 2616
+      },
+      "total_count": 22289,
+      "duration_days": 482,
+      "percentages": {
+        "Bounce": 5.3,
+        "Foraging": 30.2,
+        "Low-energy": 27.5,
+        "Resting": 25.2,
+        "Movement": 11.7
+      }
+    }
+  },
+  "E4": {
+    "INTERIM": {
+      "behaviors": {
+        "Bounce": 402,
+        "Foraging": 756,
+        "Low-energy": 759,
+        "Movement": 395,
+        "Resting": 424
+      },
+      "total_count": 2736,
+      "duration_days": 66,
+      "percentages": {
+        "Bounce": 14.7,
+        "Foraging": 27.6,
+        "Low-energy": 27.7,
+        "Movement": 14.4,
+        "Resting": 15.5
+      }
+    },
+    "POST": {
+      "behaviors": {
+        "Foraging": 9243,
+        "Low-energy": 7391,
+        "Movement": 6024,
+        "Resting": 4628,
+        "Bounce": 80
+      },
+      "total_count": 27366,
+      "duration_days": 684,
+      "percentages": {
+        "Foraging": 33.8,
+        "Low-energy": 27.0,
+        "Movement": 22.0,
+        "Resting": 16.9,
+        "Bounce": 0.3
+      }
+    },
+    "PRE": {
+      "behaviors": {
+        "Foraging": 7526,
+        "Low-energy": 6785,
+        "Movement": 2791,
+        "Resting": 4540,
+        "Bounce": 622
+      },
+      "total_count": 22264,
+      "duration_days": 482,
+      "percentages": {
+        "Foraging": 33.8,
+        "Low-energy": 30.5,
+        "Movement": 12.5,
+        "Resting": 20.4,
+        "Bounce": 2.8
+      }
+    }
+  },
+  "E5": {
+    "INTERIM": {
+      "behaviors": {
+        "Foraging": 246,
+        "Low-energy": 225,
+        "Movement": 131,
+        "Resting": 56
+      },
+      "total_count": 658,
+      "duration_days": 65,
+      "percentages": {
+        "Foraging": 37.4,
+        "Low-energy": 34.2,
+        "Movement": 19.9,
+        "Resting": 8.5
+      }
+    },
+    "POST": {
+      "behaviors": {
+        "Foraging": 752,
+        "Low-energy": 353,
+        "Movement": 1372,
+        "Resting": 89,
+        "Bounce": 9
+      },
+      "total_count": 2575,
+      "duration_days": 675,
+      "percentages": {
+        "Foraging": 29.2,
+        "Low-energy": 13.7,
+        "Movement": 53.3,
+        "Resting": 3.5,
+        "Bounce": 0.3
+      }
+    },
+    "PRE": {
+      "behaviors": {
+        "Low-energy": 7141,
+        "Resting": 4119,
+        "Foraging": 6070,
+        "Movement": 773,
+        "Bounce": 80
+      },
+      "total_count": 18183,
+      "duration_days": 473,
+      "percentages": {
+        "Low-energy": 39.3,
+        "Resting": 22.7,
+        "Foraging": 33.4,
+        "Movement": 4.3,
+        "Bounce": 0.4
+      }
+    }
+  },
+  "E6": {
+    "PRE": {
+      "behaviors": {
+        "Foraging": 8122,
+        "Low-energy": 5719,
+        "Movement": 2222,
+        "Resting": 5048,
+        "Bounce": 82
+      },
+      "total_count": 21193,
+      "duration_days": 453,
+      "percentages": {
+        "Foraging": 38.3,
+        "Low-energy": 27.0,
+        "Movement": 10.5,
+        "Resting": 23.8,
+        "Bounce": 0.4
+      }
+    }
+  }
+}

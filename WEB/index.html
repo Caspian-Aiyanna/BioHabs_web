@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92BWH0K0ML"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-92BWH0K0ML');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elephant Movement & Behavioral Analysis | Interactive Visualization Platform</title>
+    <meta name="description"
+        content="Interactive visualization platform for elephant movement trajectories, behavioral states, and habitat selection analysis using HMM (Hidden Markov Models) and RSF (Resource Selection Function) models.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <script>if(localStorage.getItem('theme')==='light') document.body.classList.add('light-theme');</script>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <span class="brand-text">Elephant Movement Analysis</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Overview</a></li>
+                <li><a href="methodology.html" class="nav-link">Methodology</a></li>
+                <li><a href="explorer.html" class="nav-link">Trajectory Explorer</a></li>
+                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
+                <li><a href="ghost-fence.html" class="nav-link">Ghost Fence</a></li>
+                <li><a href="rsf-comparison.html" class="nav-link">RSF Comparison</a></li>
+            </ul>
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+                <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:block; width:20px; height:20px;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background" style="background: linear-gradient(rgba(26, 34, 30, 0.5), rgba(26, 34, 30, 0.9)), url('elephants/WhatsApp Image 2025-05-30 at 21.05.56.jpeg'); background-size: cover; background-position: center; position: absolute; inset: 0; z-index: 1;"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span>Behavioral Habitat Maps &</span>
+                <span>Movement Analysis</span>
+            </h1>
+            <p class="hero-subtitle">
+                Here we explore behavioral trajectories, habitat selection patterns, and movement dynamics
+                of 6 elephants across a natural BACI (Before-After Control-Impact) study design using advanced HMM
+                (Hidden Markov Models) and RSF (Resource Selection Function) models.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Elephants Tracked</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Study Periods</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4+1</div>
+                    <div class="stat-label">Behavioral Classes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">140K+</div>
+                    <div class="stat-label">GPS Fix Points</div>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="explorer.html" class="btn btn-primary">
+                    Explore Trajectories
+                </a>
+                <a href="methodology.html" class="btn btn-secondary">
+                    Learn More
+                </a>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- Study Overview -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Study Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                    </div>
+                    <h3>BACI Design</h3>
+                    <p>Before-After-Control-Impact study examining elephant behavior across fence removal periods: Pre,
+                        Interim, and Post phases.</p>
+                </div>
+                <div class="overview-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                        </svg>
+                    </div>
+                    <h3>HMM Decoding</h3>
+                    <p>Hierarchical Hidden Markov Models (HMM) classify trajectories into binary states: Resting,
+                        Low-energy, Foraging, and Movement, with spatial interactions (such as Bounce behaviors).</p>
+                </div>
+                <div class="overview-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <line x1="3" y1="9" x2="21" y2="9" />
+                            <line x1="9" y1="21" x2="9" y2="9" />
+                        </svg>
+                    </div>
+                    <h3>RSF Analysis</h3>
+                    <p>Resource Selection Functions model habitat selection intensity, revealing behavioral-specific
+                        landscape preferences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Study Timeline -->
+    <section class="section section-dark timeline-section">
+        <div class="container">
+            <h2 class="section-title">Study Timeline</h2>
+            <p class="section-subtitle">Chronological progression of the BACI experimental design</p>
+
+            <div class="timeline-wrapper">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Oct 2022 - Aug 2023</div>
+                        <h3>PRE - HOME RANGE</h3>
+                        <p>Initial GPS collar deployment and baseline behavioral monitoring within fenced management
+                            zones.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jan 23, 2024</div>
+                        <h3>Fence Removal</h3>
+                        <p>Internal boundary between Kariega West and Harvestvale removed, initiating the interim
+                            transition phase.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jan - Feb 2024</div>
+                        <h3>Interim Phase</h3>
+                        <p>Initial behavioral adaptation and exploratory movement into previously inaccessible landscape
+                            segments.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Mar 2024 - Present</div>
+                        <h3>POST - NOVEL RANGE</h3>
+                        <p>Stable utilization of the unified landscape and establishment of novel behavioral-habitat
+                            selection patterns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Features Preview -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Interactive Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-preview">
+                        <div class="feature-image-grid">
+                            <img src="elephants/Trajectory_E2_pre.png" alt="Trajectory Pre">
+                            <img src="elephants/Trajectory_E4_post.png" alt="Trajectory Post">
+                        </div>
+                    </div>
+                    <h3>Animated Trajectories</h3>
+                    <p>Watch elephant movements unfold over time with smooth animations, behavioral color coding, and
+                        synchronized multi-elephant views.</p>
+                    <a href="explorer.html" class="feature-link">Explore →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-preview">
+                        <img src="elephants/Panel_RSF_Selection_E3_Foraging.png" class="feature-full-img"
+                            alt="RSF Heatmap">
+                    </div>
+                    <h3>RSF Heatmaps</h3>
+                    <p>Toggle habitat selection intensity overlays with adjustable opacity to compare predicted vs.
+                        realized occupancy patterns.</p>
+                    <a href="rsf-comparison.html" class="feature-link">Compare →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-preview">
+                        <div class="feature-image-grid">
+                            <img src="elephants/Summary_Veg_Usage.png" alt="Vegetation Usage Summary">
+                            <img src="elephants/Micro_Habitat_Comparisons.png" alt="Micro Habitat Comparison">
+                        </div>
+                    </div>
+                    <h3>Real-time Statistics</h3>
+                    <p>View behavioral state distributions, movement metrics, and time budgets that update as you scrub
+                        through the timeline.</p>
+                    <a href="behavioral.html" class="feature-link">Analyze →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elephant Profiles -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Kariega Study Area</h2>
+            <div class="study-area-layout" style="display: flex; gap: var(--spacing-2xl); align-items: center; flex-wrap: wrap;">
+                <div class="study-area-description" style="flex: 1; min-width: 300px;">
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.8;">The Kariega Game Reserve, located in the Eastern Cape province of South Africa, is a premier
+                        private wildlife conservancy spanning approximately 10,000 hectares (115 km²) along the
+                        Bushmans River. The reserve is dominated by dense, woody, and thorny semi-succulent
+                        vegetation characteristic of the Albany Thicket biome.</p>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.8;">Kariega supports a diverse assemblage of wildlife, including
+                        African elephant (<i>Loxodonta africana</i>), giraffe (<i>Giraffa camelopardalis</i>),
+                        cheetah (<i>Acinonyx jubatus</i>), white and black rhinoceros (<i>Ceratotherium simum</i>
+                        and <i>Diceros bicornis</i>), ostrich (<i>Struthio camelus</i>), and numerous avian and
+                        reptile species.</p>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8;">Initially, the elephant population (75 individuals) was divided by
+                        an internal fence into Kariega West (KW; 2,792 ha; 55 elephants) and Harvestvale (HV; 4,369
+                        ha; 20 elephants). Fence removal in 2024 created a contiguous 8,192 ha landscape accessible
+                        to the entire population.</p>
+                </div>
+                <div class="study-area-images-grid" style="flex: 1; min-width: 350px; display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
+                    <div class="study-area-img-container" style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
+                        <img src="elephants/Study Area.jpg" alt="Study Area Map" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                    <div class="study-area-img-container" style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
+                        <img src="elephants/Vegetation_Classes_Map_with_Fence.png" alt="Vegetation and Fence Map" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Elephants Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Meet the Elephants</h2>
+            <p class="section-subtitle">Six elephants tracked across the BACI study periods, each with unique movement
+                patterns and behavioral adaptations. <strong>Hover over any card to view their alternate image.</strong></p>
+            
+            <div class="elephant-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); margin-top: var(--spacing-2xl);">
+                <!-- E1 Kamva -->
+                <div class="elephant-card male" data-elephant="E1">
+                    <div class="elephant-image dual-image">
+                        <img src="elephants/Kamva_1.png" alt="Kamva (E1)" class="img-primary">
+                        <img src="elephants/Kamva_2.png" alt="Kamva (E1) Alternate" class="img-secondary">
+                    </div>
+                    <div class="elephant-header">
+                        <h3>Kamva (E1)</h3><span class="data-badge">KW - Pre, Interim</span>
+                    </div>
+                    <div class="elephant-stats">
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Kariega West</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre, Interim</span></div>
+                        <div class="mini-stat"><span class="mini-label">Foraging</span><span class="mini-value">38.5%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Movement</span><span class="mini-value">14.5%</span></div>
+                    </div>
+                    <p class="elephant-desc">Ecological baseline in the Kariega West (KW) exclusion zone, demonstrating typical daily periodicity in foraging and maintenance behavior.</p>
+                </div>
+
+                <!-- E2 Kambaku -->
+                <div class="elephant-card male" data-elephant="E2">
+                    <div class="elephant-image dual-image">
+                        <img src="elephants/Kambaku_1.jpg" alt="Kambaku (E2)" class="img-primary">
+                        <img src="elephants/Kambaku_2.jpg" alt="Kambaku (E2) Alternate" class="img-secondary">
+                    </div>
+                    <div class="elephant-header">
+                        <h3>Kambaku (E2)</h3><span class="data-badge">KW - Pre, Interim</span>
+                    </div>
+                    <div class="elephant-stats">
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Kariega West</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre, Interim</span></div>
+                        <div class="mini-stat"><span class="mini-label">Foraging</span><span class="mini-value">31.2%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Low-energy</span><span class="mini-value">30.4%</span></div>
+                    </div>
+                    <p class="elephant-desc">Pre and interim period data with stable movement patterns within established territory. Higher resting budget reflects older male energy-conservation strategy.</p>
+                </div>
+
+                <!-- E6 Balu -->
+                <div class="elephant-card male" data-elephant="E6">
+                    <div class="elephant-image dual-image">
+                        <img src="elephants/Balu_1.jpg" alt="Balu (E6)" class="img-primary">
+                        <img src="elephants/Balu_2.jpg" alt="Balu (E6) Alternate" class="img-secondary">
+                    </div>
+                    <div class="elephant-header">
+                        <h3>Balu (E6)</h3><span class="data-badge">HV (Pre) / KW (Int)</span>
+                    </div>
+                    <div class="elephant-stats">
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Harvestvale</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre, Interim</span></div>
+                        <div class="mini-stat"><span class="mini-label">Foraging</span><span class="mini-value">38.3%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Movement</span><span class="mini-value">10.5%</span></div>
+                    </div>
+                    <p class="elephant-desc">HV-origin male with high foraging budget. PRE baseline data provides cross-reserve behavioral comparison for the BACI design.</p>
+                </div>
+
+                <!-- E3 Bukela -->
+                <div class="elephant-card female" data-elephant="E3">
+                    <div class="elephant-image dual-image">
+                        <img src="elephants/Bukela_1.jpg" alt="Bukela (E3)" class="img-primary">
+                        <img src="elephants/Bukela_2.jpg" alt="Bukela (E3) Alternate" class="img-secondary">
+                    </div>
+                    <div class="elephant-header">
+                        <h3>Bukela (E3)</h3><span class="data-badge complete">KW - All Periods</span>
+                    </div>
+                    <div class="elephant-stats">
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Kariega West</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All 3</span></div>
+                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span class="mini-value">11.7%</span></div>
+                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span class="mini-value">17.6% ↑</span></div>
+                    </div>
+                    <p class="elephant-desc">Full BACI matriarch dataset. Shows +50% movement increase post-fence, reflecting successful range expansion into the novel Harvestvale landscape.</p>
+                </div>
+
+                <!-- E4 Half Moon -->
+                <div class="elephant-card female" data-elephant="E4">
+                    <div class="elephant-image dual-image">
+                        <img src="elephants/Half_moon_1.jpg" alt="Half Moon (E4)" class="img-primary">
+                        <img src="elephants/Half Moon_2.jpg.png" alt="Half Moon (E4) Alternate" class="img-secondary">
+                    </div>
+                    <div class="elephant-header">
+                        <h3>Half Moon (E4)</h3><span class="data-badge complete">KW - All Periods</span>
+                    </div>
+                    <div class="elephant-stats">
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Kariega West</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All 3</span></div>
+                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span class="mini-value">12.5%</span></div>
+                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span class="mini-value">22.0% ↑↑</span></div>
+                    </div>
+                    <p class="elephant-desc">Matriarch exhibiting the Ghost Fence effect. Strong behavioral shift from routine foraging to exploration post-removal — highest spatial expansion in the cohort.</p>
+                </div>
+
+                <!-- E5 Beauty -->
+                <div class="elephant-card female" data-elephant="E5">
+                    <div class="elephant-image dual-image">
+                        <img src="elephants/Beauty_1.jpg" alt="Beauty (E5)" class="img-primary">
+                        <img src="elephants/Beauty_2.jpg" alt="Beauty (E5) Alternate" class="img-secondary">
+                    </div>
+                    <div class="elephant-header">
+                        <h3>Beauty (E5)</h3><span class="data-badge complete">HV (Pre) / KW (All)</span>
+                    </div>
+                    <div class="elephant-stats">
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Harvestvale</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All 3</span></div>
+                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span class="mini-value">4.3%</span></div>
+                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span class="mini-value">53.3% ↑↑↑</span></div>
+                    </div>
+                    <p class="elephant-desc">Most dramatic behavioral shift in the study. HV-origin female colonized novel KW territory post-fence, with movement comprising over half her POST budget.</p>
+                </div>
+            </div>
+    </section>
+
+    <!-- Partner Logos -->
+    <section class="section" style="padding-top: var(--spacing-xl); padding-bottom: var(--spacing-3xl);">
+        <div class="container"
+            style="display: flex; justify-content: center; gap: var(--spacing-2xl); align-items: center; flex-wrap: wrap;">
+            <div
+                style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; min-width: 150px;">
+                <img src="elephants/CIRGEO.jpg" alt="CIRGEO"
+                    style="max-height: 80px; max-width: 100%; object-fit: contain;">
+            </div>
+            <div
+                style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; min-width: 150px;">
+                <img src="elephants/bteh_LOGO.webp" alt="Bring The Elephant Home"
+                    style="max-height: 80px; max-width: 100%; object-fit: contain;">
+            </div>
+            <div
+                style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; min-width: 150px;">
+                <img src="elephants/uni_logo.jpg" alt="University Logo"
+                    style="max-height: 80px; max-width: 100%; object-fit: contain;">
+            </div>
+            <div
+                style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; min-width: 150px;">
+                <img src="elephants/SPACE-IT-UP-bbb-1-1-1-1.png" alt="Space It Up"
+                    style="max-height: 80px; max-width: 100%; object-fit: contain;">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About This Platform</h4>
+                    <p>Interactive visualization platform for elephant movement and behavioral analysis using HMM and
+                        RSF modeling techniques.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="explorer.html">Trajectory Explorer</a></li>
+                        <li><a href="behavioral.html">Behavioral Analysis</a></li>
+                        <li><a href="ghost-fence.html">Ghost Fence</a></li>
+                        <li><a href="rsf-comparison.html">RSF Comparison</a></li>
+                        <li><a href="methodology.html">Methodology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Data & Methods</h4>
+                    <ul class="footer-links">
+                        <li><a href="methodology.html#hmm">HMM Decoding</a></li>
+                        <li><a href="methodology.html#rsf">RSF Analysis</a></li>
+                        <li><a href="methodology.html#data">Download Data</a></li>
+                        <li><a href="methodology.html#cite">Citation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Elephant Movement Analysis Platform. Research data visualization.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

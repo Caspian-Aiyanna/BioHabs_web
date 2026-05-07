@@ -1,0 +1,415 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92BWH0K0ML"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-92BWH0K0ML');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trajectory Explorer | Elephant Movement Analysis</title>
+    <meta name="description"
+        content="Interactive trajectory explorer with animated elephant movements, behavioral states, and real-time statistics.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/explorer.css">
+</head>
+
+<body>
+    <script>if(localStorage.getItem('theme')==='light') document.body.classList.add('light-theme');</script>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <span class="brand-text">Elephant Movement Analysis</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Overview</a></li>
+                <li><a href="methodology.html" class="nav-link">Methodology</a></li>
+                <li><a href="explorer.html" class="nav-link active">Trajectory Explorer</a></li>
+                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
+                <li><a href="ghost-fence.html" class="nav-link">Ghost Fence</a></li>
+                <li><a href="rsf-comparison.html" class="nav-link">RSF Comparison</a></li>
+            </ul>
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+                <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:block; width:20px; height:20px;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="explorer-container">
+        <!-- Left Panel - Info & Instructions -->
+        <div class="info-panel">
+            <div class="panel-section">
+                <h3 class="panel-title">About This View</h3>
+                <p class="info-text">
+                    This interactive map shows elephant movement trajectories color-coded by behavioral state:
+                </p>
+                <ul class="info-list">
+                    <li><span class="color-dot Resting"></span> Resting (Grey)</li>
+                    <li><span class="color-dot resting"></span> Low-energy (Orange)</li>
+                    <li><span class="color-dot foraging"></span> Foraging (Green)</li>
+                    <li><span class="color-dot movement"></span> Movement (Blue)</li>
+                    <li><span class="color-dot bounce"></span> Bounce (Red)</li>
+                </ul>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Data Availability</h3>
+                <div class="availability-grid">
+                    <div class="availability-item">
+                        <strong>E1, E2, E6:</strong> Pre only
+                    </div>
+                    <div class="availability-item">
+                        <strong>E3, E4, E5:</strong> All periods
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Instructions</h3>
+                <ol class="instructions-list">
+                    <li>Select an elephant from the right panel</li>
+                    <li>Choose a study period (Pre/Interim/Post)</li>
+                    <li>Use the timeline slider to scrub through time</li>
+                    <li>Click play to animate the trajectory</li>
+                    <li>Toggle behavioral filters to focus on specific states</li>
+                    <li>Click on markers for detailed information</li>
+                </ol>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Actions</h3>
+                <div class="action-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm);">
+                    <button id="cite-btn" class="elephant-btn" style="padding: 0.5rem; font-size: 0.8rem;">
+                        Cite View
+                    </button>
+                    <button id="export-map" class="elephant-btn" style="padding: 0.5rem; font-size: 0.8rem;">
+                        Export Map
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="note-box">
+                    <strong>Note:</strong> Loading CSV data. Large datasets may take a
+                    moment to load. Use the "Max Points" selector to adjust performance.
+                </div>
+            </div>
+            <div class="panel-section">
+                <h3 class="panel-title">Statistics Summary</h3>
+                <div class="stats-display-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Points</span>
+                        <span class="stat-value" id="total-points">Loading...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Date Range</span>
+                        <span class="stat-value" id="date-range">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="context-box mt-md" id="env-context">
+                    <h4 class="distribution-title">Environmental Context</h4>
+                    <div class="context-grid"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+                        <div class="context-item">
+                            <span class="stat-label">Dist. to Fence</span>
+                            <span class="stat-value" id="fence-dist" style="font-size: 0.9rem;">- m</span>
+                        </div>
+                        <div class="context-item">
+                            <span class="stat-label">Avg. Speed</span>
+                            <span class="stat-value" id="avg-speed" style="font-size: 0.9rem;">- m/min</span>
+                        </div>
+                        <div class="context-item"
+                            style="grid-column: span 2; border-top: 1px solid var(--glass-border); padding-top: 8px; margin-top: 5px;">
+                            <span class="stat-label">Nearby Elephants (Dist)</span>
+                            <span class="stat-value" id="co-travel-list"
+                                style="font-size: 0.85rem; color: var(--color-accent-primary);">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="behavior-distribution">
+                    <h4 class="distribution-title">Time Budget Distribution</h4>
+                    <div class="distribution-bar">
+                        <div class="bar-segment Resting" style="width: 20%"></div>
+                        <div class="bar-segment resting" style="width: 20%"></div>
+                        <div class="bar-segment foraging" style="width: 20%"></div>
+                        <div class="bar-segment movement" style="width: 20%"></div>
+                        <div class="bar-segment bounce" style="width: 20%"></div>
+                    </div>
+                </div>
+                <div class="distribution-legend-grid"
+                    style="grid-template-columns: repeat(3, 1fr); font-size: 0.7rem; gap: 4px; margin-top: 8px;">
+                    <div class="legend-item"><span class="legend-color Resting"></span> Sl: <strong
+                            id="Resting-pct">0%</strong></div>
+                    <div class="legend-item"><span class="legend-color resting"></span> Lo: <strong
+                            id="resting-pct">0%</strong></div>
+                    <div class="legend-item"><span class="legend-color foraging"></span> Fo: <strong
+                            id="foraging-pct">0%</strong></div>
+                    <div class="legend-item"><span class="legend-color movement"></span> Mo: <strong
+                            id="movement-pct">0%</strong></div>
+                    <div class="legend-item"><span class="legend-color bounce"></span> Bo: <strong
+                            id="bounce-pct">0%</strong></div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Movement Metrics</h3>
+                <div class="metrics-charts">
+                    <div class="metric-chart-container" style="height: 120px; margin-bottom: var(--spacing-md);">
+                        <canvas id="speed-chart"></canvas>
+                    </div>
+                    <div class="metric-chart-container" style="height: 120px;">
+                        <canvas id="tortuosity-chart"></canvas>
+                    </div>
+                </div>
+                <p class="filter-hint mt-sm">Real-time Speed and Turning Angle analysis</p>
+            </div>
+        </div>
+
+        <!-- Center - Map -->
+        <div class="map-container">
+            <div id="map"></div>
+
+            <!-- Timeline Controls -->
+            <div class="timeline-controls">
+                <div class="timeline-header">
+                    <div class="current-time">
+                        <span id="current-time">-</span>
+                        <span class="behavior-badge" id="current-behavior">Idle</span>
+                    </div>
+                    <div class="playback-controls">
+                        <button class="control-btn" id="prev-btn" title="Previous Point">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="m15 18-6-6 6-6" />
+                            </svg>
+                        </button>
+                        <button class="control-btn" id="play-btn" title="Play">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3" />
+                            </svg>
+                        </button>
+                        <button class="control-btn" id="pause-btn" style="display: none;" title="Pause">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="6" y="4" width="4" height="16" />
+                                <rect x="14" y="4" width="4" height="16" />
+                            </svg>
+                        </button>
+                        <button class="control-btn" id="next-btn" title="Next Point">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="m9 18 6-6-6-6" />
+                            </svg>
+                        </button>
+                        <button class="control-btn" id="reset-btn" title="Reset">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="1 4 1 10 7 10" />
+                                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="speed-control">
+                        <label>Speed:</label>
+                        <select id="speed-select">
+                            <option value="0.5">0.5x</option>
+                            <option value="1" selected>1x</option>
+                            <option value="2">2x</option>
+                            <option value="5">5x</option>
+                            <option value="10">10x</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="timeline-slider">
+                    <input type="range" id="time-slider" min="0" max="100" value="0">
+                </div>
+            </div>
+
+            <!-- Welcome Overlay (Start Screen) -->
+            <div class="loading-overlay" id="welcome-overlay" style="z-index: 1001;">
+                <div style="font-size: 4rem; margin-bottom: 20px;">🐘</div>
+                <h2 style="color: var(--color-text-primary); font-size: 2rem; margin-bottom: 10px;">Begin Your Journey</h2>
+                <p style="font-size: 1.2rem; max-width: 400px; text-align: center; line-height: 1.6;">
+                    Please choose one or more elephants from the right panel to visualize their movement patterns across
+                    the Kariega landscape.
+                </p>
+                <div style="margin-top: 30px; opacity: 0.6; font-size: 0.9rem;">
+                    Select an Elephant →
+                </div>
+            </div>
+
+            <!-- Loading Indicator (Processing State) -->
+            <div class="loading-overlay" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p id="loading-text" style="font-size: 1.1rem; color: #e2e8f0; font-weight: 500; margin-top: 20px;">
+                    Tracking Elephant Movements...
+                </p>
+            </div>
+
+            <!-- Data Status -->
+            <div class="data-status" id="data-status">
+                <div class="status-icon">🐘</div>
+                <div class="status-message">
+                    <span style="font-size: 1.1rem; font-weight: 600; color: var(--color-text-primary);">Begin Your
+                        Journey</span><br>
+                    <span style="font-size: 1rem;">Please choose one or more elephants from the right panel to visualize
+                        their movement.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Controls -->
+        <div class="control-panel">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <h3 class="panel-title" style="margin-bottom: 0;">Elephant Selection</h3>
+                <button id="deselect-all-elephants" class="text-btn"
+                    style="font-size: 0.7rem; color: var(--color-accent-primary); background: none; border: none; cursor: pointer; padding: 0; font-weight: 600;">Deselect
+                    All</button>
+            </div>
+            <div class="elephant-selector">
+                <button class="elephant-btn male" data-elephant="E1">Kamva</button>
+                <button class="elephant-btn male" data-elephant="E2">Kambaku</button>
+                <button class="elephant-btn female" data-elephant="E3">Bukela</button>
+                <button class="elephant-btn female" data-elephant="E4">Half Moon</button>
+                <button class="elephant-btn female" data-elephant="E5">Beauty</button>
+                <button class="elephant-btn male" data-elephant="E6">Balu</button>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Study Period</h3>
+                <div class="period-selector">
+                    <button class="period-btn active" data-period="pre">
+                        <span class="period-label">PRE - HOME RANGE</span>
+                        <span class="period-desc">Before Removal</span>
+                    </button>
+                    <button class="period-btn" data-period="interim">
+                        <span class="period-label">Interim</span>
+                        <span class="period-desc">During Removal</span>
+                    </button>
+                    <button class="period-btn" data-period="post">
+                        <span class="period-label">POST - NOVEL RANGE</span>
+                        <span class="period-desc">After Removal</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <h3 class="panel-title" style="margin-bottom: 0;">Behavioral Filters</h3>
+                    <label class="filter-checkbox" style="margin-bottom: 0; font-size: 0.7rem;">
+                        <input type="checkbox" checked id="toggle-all-behaviors">
+                        <span class="checkbox-custom" style="background: var(--color-accent-primary);"></span>
+                        <span class="filter-label">Select All</span>
+                    </label>
+                </div>
+                <div class="behavior-filters-grid">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked data-behavior="Resting">
+                        <span class="checkbox-custom Resting"></span>
+                        <span class="filter-label">Resting</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked data-behavior="Low-energy">
+                        <span class="checkbox-custom resting"></span>
+                        <span class="filter-label">Low-energy</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked data-behavior="Foraging">
+                        <span class="checkbox-custom foraging"></span>
+                        <span class="filter-label">Foraging</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked data-behavior="Movement">
+                        <span class="checkbox-custom movement"></span>
+                        <span class="filter-label">Movement</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked data-behavior="Bounce">
+                        <span class="checkbox-custom bounce"></span>
+                        <span class="filter-label">Bounce</span>
+                    </label>
+                </div>
+            </div>
+
+
+
+            <div class="panel-section">
+                <h3 class="panel-title">Display & Performance</h3>
+                <div class="display-grid">
+                    <label class="toggle-option">
+                        <input type="checkbox" id="show-fence" checked>
+                        <span class="toggle-label">Fence</span>
+                    </label>
+                    <label class="toggle-option">
+                        <input type="checkbox" id="show-trail" checked>
+                        <span class="toggle-label">Trail</span>
+                    </label>
+                </div>
+                <div style="margin-top: var(--spacing-md);">
+                    <select id="max-points"
+                        style="width: 100%; padding: var(--spacing-sm); background: var(--color-bg-tertiary); color: var(--color-text-primary); border: 1px solid var(--glass-border); border-radius: var(--radius-sm);">
+                        <option value="500">resample to 500 points</option>
+                        <option value="1000" selected>resample to 1000 points</option>
+                        <option value="2000">resample to 2000 points</option>
+                        <option value="5000">resample to 5000 points</option>
+                        <option value="all">All Points (Warning: Slow)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Charts.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- GeoRaster scripts -->
+    <script src="https://unpkg.com/georaster"></script>
+    <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+    <!-- Proj4js for coordinate transformation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/explorer.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,862 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92BWH0K0ML"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-92BWH0K0ML');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology & Data | Elephant Movement Analysis</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <script>if(localStorage.getItem('theme')==='light') document.body.classList.add('light-theme');</script>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <span class="brand-text">Elephant Movement Analysis</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Overview</a></li>
+                <li><a href="methodology.html" class="nav-link active">Methodology</a></li>
+                <li><a href="explorer.html" class="nav-link">Trajectory Explorer</a></li>
+                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
+                <li><a href="ghost-fence.html" class="nav-link">Ghost Fence</a></li>
+                <li><a href="rsf-comparison.html" class="nav-link">RSF Comparison</a></li>
+            </ul>
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+                <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:block; width:20px; height:20px;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <section class="section" style="margin-top: 64px;">
+        <div class="container">
+            <h1 class="section-title">Methodology & Data</h1>
+
+            <div class="overview-grid" style="margin-bottom: var(--spacing-3xl);">
+                <div class="overview-card">
+                    <div class="card-icon" style="margin-bottom: var(--spacing-md);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="24" height="24">
+                            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                        </svg>
+                    </div>
+                    <h3><span class="glossary-term"></span>HMM Decoding<span class="tooltip">Hidden Markov Models are
+                            statistical models used to predict an unobserved state (behavior) based on observable data
+                            (step length and turning angle).</span></span></h3>
+                    <p style="color: var(--color-text-secondary); line-height: 1.7; margin-bottom: var(--spacing-md);">
+                        Movement trajectories were segmented using <strong>Hidden Markov Models</strong>, which infer
+                        latent behavioral states from the joint distribution of step lengths and turning angles.
+                    </p>
+                    <ul style="color: var(--color-text-tertiary); font-size: 0.875rem; line-height: 1.6;">
+                        <li><strong>Resting:</strong> Nocturnal clusters, minimal displacement.</li>
+                        <li><strong>Low-energy:</strong> Maintenance behaviors, low tortuosity.</li>
+                        <li><strong>Foraging:</strong> High tortuosity, moderate displacement.</li>
+                        <li><strong>Movement:</strong> High-speed relocation, directional persistence.</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-icon" style="margin-bottom: var(--spacing-md);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="24" height="24">
+                            <path d="M3 3v18h18M7 16l4-4 4 4 5-8" />
+                        </svg>
+                    </div>
+                    <h3><span class="glossary-term">RSF Analysis<span class="tooltip">Resource Selection Functions are
+                                models that estimate the probability of use of a resource unit (like a pixel of habitat)
+                                by an organism.</span></span></h3>
+                    <p style="color: var(--color-text-secondary); line-height: 1.7; margin-bottom: var(--spacing-md);">
+                        <strong>Resource Selection Functions</strong> modeled the probability of selection for specific
+                        environmental features (water, NDVI, terrain) across behavioral states.
+                    </p>
+                    <ul style="color: var(--color-text-tertiary); font-size: 0.875rem; line-height: 1.6;">
+                        <li><strong>Covariates:</strong> MODIS NDVI, Sentinel-2 landcover, DEM.</li>
+                        <li><strong>Framework:</strong> Logistic Regression (Used vs. Available).</li>
+                        <li><strong>Output:</strong> 30m resolution selection intensity maps.</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-icon" style="margin-bottom: var(--spacing-md);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="24" height="24">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3><span class="glossary-term">BACI Design<span class="tooltip">Before-After-Control-Impact design
+                                is an experimental setup used to measure the effect of an event (like fence removal) by
+                                comparing data before and after it happens.</span></span></h3>
+                    <p style="color: var(--color-text-secondary); line-height: 1.7; margin-bottom: var(--spacing-md);">
+                        The study follows a <strong>Before-After-Control-Impact (BACI)</strong> design to evaluate how
+                        the removal of the Kariega West fence impacted spatial behavior.
+                    </p>
+                    <ul style="color: var(--color-text-tertiary); font-size: 0.875rem; line-height: 1.6;">
+                        <li><strong>PRE - HOME RANGE (2022-23):</strong> Physical constraint baseline.</li>
+                        <li><strong>INTERIM (2024):</strong> Behavioral lag / Ghost Fence effect.</li>
+                        <li><strong>POST - NOVEL RANGE (2024-25):</strong> Full territory
+                            expansion/adaptation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Research Framework -->
+            <div class="container text-center">
+                <h2 class="section-title">Research Framework</h2>
+                <p class="section-subtitle">A multi-scale investigation into elephant behavioral shifts and spatial constraints following landscape-level management interventions.</p>
+
+                <div class="research-grid">
+                    <!-- RQ 1 -->
+                    <div class="finding-card">
+                        <div class="finding-number">RQ 1</div>
+                        <h3>Overall Activity Budgets</h3>
+                        <p class="rq-text">How do African elephants allocate time among movement, foraging, Resting, and
+                            low-energy behavioral states as inferred from GPS collar data?</p>
+                        <div class="prediction-box">
+                            <strong>Predictions:</strong>
+                            <ul>
+                                <li>Primary allocation to low-energy and foraging states; movement and Resting comprising
+                                    smaller fractions.</li>
+                                <li>Seasonal variance: Increased movement during resource-limited periods vs. low-energy
+                                    behavior during resource-rich periods.</li>
+                                <li>Resting states spatially and temporally clustered (predominantly night/low-disturbance
+                                    zones).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- RQ 2 -->
+                    <div class="finding-card">
+                        <div class="finding-number">RQ 2</div>
+                        <h3>Spatial Distribution (RSF)</h3>
+                        <p class="rq-text">How does the spatial distribution of behavioral states vary across the landscape
+                            to identify core areas and movement corridors?</p>
+                        <div class="prediction-box">
+                            <strong>Predictions:</strong>
+                            <ul>
+                                <li>Foraging/Low-energy associated with high vegetation productivity resource zones.</li>
+                                <li>Movement concentrated along repeat-use pathways linking core areas.</li>
+                                <li>Resting selected for spatially discrete areas with reduced human disturbance.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- RQ 3 -->
+                    <div class="finding-card">
+                        <div class="finding-number">RQ 3</div>
+                        <h3>Demographic Variation</h3>
+                        <p class="rq-text">How do activity budgets and spatial selection differ among individual elephants?
+                        </p>
+                        <div class="prediction-box">
+                            <strong>Predictions:</strong>
+                            <ul>
+                                <li>Adult males exhibiting higher movement and broader spatial use, especially during musth.
+                                </li>
+                                <li>Family groups with calves selecting for areas proximal to water and protective cover.
+                                </li>
+                                <li>Exploratory vs. risk-averse herds showing distinct adaptation patterns in newly
+                                    accessible habitat.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- RQ 4 -->
+                    <div class="finding-card">
+                        <div class="finding-number">RQ 4</div>
+                        <h3>Ghost Fence Persistence</h3>
+                        <p class="rq-text">Do elephants exhibit persistent movement constraints consonant with a "ghost
+                            fence" effect following physical removal?</p>
+                        <div class="prediction-box">
+                            <strong>Predictions:</strong>
+                            <ul>
+                                <li>Initial persistence of turning/slowing near former lines with increased tortuosity.</li>
+                                <li>Temporal decline: Strength of effect diminishes as crossings and spatial expansion
+                                    increase.</li>
+                                <li>Older individuals/socially conservative herds showing longer behavioral persistence.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Study Workflow -->
+                <div class="overview-card" style="margin-top: var(--spacing-3xl); margin-bottom: var(--spacing-2xl);">
+                    <h2 style="margin-bottom: var(--spacing-xl); text-align: center;">Study Workflow</h2>
+                    <p
+                        style="color: var(--color-text-secondary); text-align: center; margin-bottom: var(--spacing-2xl); max-width: 700px; margin-left: auto; margin-right: auto;">
+                        Comprehensive analytical pipeline integrating GPS tracking data, behavioral state
+                        classification, and habitat selection modeling
+                    </p>
+
+                    <div style="display: grid; gap: var(--spacing-lg);">
+                        <!-- Phase 1: Data Collection -->
+                        <div style="display: flex; gap: var(--spacing-lg); align-items: flex-start;">
+                            <div
+                                style="flex-shrink: 0; width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">
+                                1</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">Data
+                                    Collection & Preprocessing</h3>
+                                <p style="color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6;">
+                                    GPS collar data from six elephants across three BACI periods (PRE - HOME RANGE,
+                                    Interim, POST - NOVEL RANGE).
+                                    Coordinate transformation from UTM Zone 35S to WGS84, temporal alignment, and
+                                    quality control filtering.</p>
+                            </div>
+                        </div>
+
+                        <!-- Phase 2: HMM Classification -->
+                        <div style="display: flex; gap: var(--spacing-lg); align-items: flex-start;">
+                            <div
+                                style="flex-shrink: 0; width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">
+                                2</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">Hidden
+                                    Markov Model (HMM) Decoding</h3>
+                                <p style="color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6;">
+                                    A multi-state HMM framework classifies trajectories based on intrinsic movement
+                                    parameters. States include <strong>Resting</strong> (nocturnal inactivity),
+                                    <strong>Low-energy</strong> (passive maintenance and nursing),
+                                    <strong>Foraging</strong> (searching), and <strong>Movement</strong> (relocation).
+                                </p>
+
+                                <!-- HMM Infographic -->
+                                <div class="hmm-infographic"
+                                    style="margin-top: var(--spacing-lg); background: rgba(0,0,0,0.3); padding: var(--spacing-xl); border-radius: var(--radius-lg); border: 1px solid var(--glass-border);">
+
+                                    <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                                        <h4 style="color: var(--color-text-primary); margin-bottom: 4px;">Behavioral
+                                            State Space Visualization</h4>
+                                        <p style="font-size: 0.75rem; color: var(--color-text-tertiary);">Classification
+                                            based on joint distribution of movement parameters</p>
+                                    </div>
+
+                                    <div
+                                        style="display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--spacing-2xl); align-items: center;">
+                                        <!-- Step Length Comparison -->
+                                        <div>
+                                            <div
+                                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                                                <h5
+                                                    style="font-size: 0.8rem; color: var(--color-accent-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">
+                                                    1. Step Length (m)</h5>
+                                                <span style="font-size: 0.7rem; color: var(--color-text-muted);">Gamma
+                                                    Dist.</span>
+                                            </div>
+                                            <div
+                                                style="position: relative; height: 160px; border-left: 2px solid var(--glass-border); border-bottom: 2px solid var(--glass-border); padding: 10px;">
+                                                <!-- Distribution curves (represented as stylized area overlaps) -->
+                                                <div style="position: absolute; bottom: 0; left: 0; width: 10%; height: 20%; background: rgba(26, 26, 26, 0.4); border: 1px solid #1A1A1A; border-bottom: none; border-radius: 4px 4px 0 0;"
+                                                    title="Resting"></div>
+                                                <div style="position: absolute; bottom: 0; left: 10%; width: 25%; height: 45%; background: rgba(153, 153, 153, 0.4); border: 1px solid #999999; border-bottom: none; border-radius: 8px 8px 0 0;"
+                                                    title="Low-energy"></div>
+                                                <div style="position: absolute; bottom: 0; left: 35%; width: 40%; height: 75%; background: rgba(230, 159, 0, 0.4); border: 1px solid #E69F00; border-bottom: none; border-radius: 12px 12px 0 0;"
+                                                    title="Foraging"></div>
+                                                <div style="position: absolute; bottom: 0; left: 75%; width: 20%; height: 95%; background: rgba(86, 180, 233, 0.4); border: 1px solid #56B4E9; border-bottom: none; border-radius: 16px 16px 0 0;"
+                                                    title="Movement"></div>
+
+                                                <!-- X-Axis Labels -->
+                                                <div
+                                                    style="position: absolute; bottom: -20px; left: 0; right: 0; display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--color-text-muted);">
+                                                    <span>0m</span>
+                                                    <span>~500m</span>
+                                                    <span>~1500m+</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Turning Angle / Tortuosity -->
+                                        <div>
+                                            <div
+                                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                                                <h5
+                                                    style="font-size: 0.8rem; color: var(--color-accent-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">
+                                                    2. Turning Angle</h5>
+                                                <span style="font-size: 0.7rem; color: var(--color-text-muted);">von
+                                                    Mises Dist.</span>
+                                            </div>
+                                            <div
+                                                style="height: 160px; position: relative; display: flex; align-items: center; justify-content: center;">
+                                                <svg width="120" height="120" viewBox="0 0 100 100">
+                                                    <!-- Coordinate plane -->
+                                                    <circle cx="50" cy="50" r="48" fill="rgba(255,255,255,0.02)"
+                                                        stroke="var(--glass-border)" stroke-width="0.5" />
+                                                    <line x1="50" y1="2" x2="50" y2="98" stroke="var(--glass-border)"
+                                                        stroke-width="0.5" stroke-dasharray="2,2" />
+                                                    <line x1="2" y1="50" x2="98" y2="50" stroke="var(--glass-border)"
+                                                        stroke-width="0.5" stroke-dasharray="2,2" />
+
+                                                    <!-- Classification Vector Overlays -->
+                                                    <!-- Movement: Directed (Up) -->
+                                                    <path d="M 50 50 Q 50 25 50 5" stroke="#56B4E9" stroke-width="2.5"
+                                                        fill="none" stroke-linecap="round"
+                                                        marker-end="url(#arrow-move)" />
+                                                    <!-- Foraging: Correlated random walk -->
+                                                    <path d="M 50 50 Q 70 40 85 25" stroke="#E69F00" stroke-width="2.5"
+                                                        fill="none" stroke-linecap="round"
+                                                        marker-end="url(#arrow-forage)" />
+                                                    <!-- Low-energy: Uncorrelated / Zero-flow -->
+                                                    <circle cx="50" cy="50" r="12" fill="#999999" fill-opacity="0.3"
+                                                        stroke="#999999" stroke-width="1.5" />
+
+                                                    <!-- SVG Defs for markers -->
+                                                    <defs>
+                                                        <marker id="arrow-move" markerWidth="6" markerHeight="6"
+                                                            refX="5" refY="3" orientation="auto">
+                                                            <path d="M 0 0 L 6 3 L 0 6 z" fill="#56B4E9" />
+                                                        </marker>
+                                                        <marker id="arrow-forage" markerWidth="6" markerHeight="6"
+                                                            refX="5" refY="3" orientation="auto">
+                                                            <path d="M 0 0 L 6 3 L 0 6 z" fill="#E69F00" />
+                                                        </marker>
+                                                    </defs>
+                                                </svg>
+                                                <div
+                                                    style="position: absolute; top: -5px; font-size: 0.6rem; color: var(--color-text-muted);">
+                                                    Directed (0°)</div>
+                                                <div
+                                                    style="position: absolute; bottom: -5px; font-size: 0.6rem; color: var(--color-text-muted);">
+                                                    Random (180°)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Classification Legend Box -->
+                                    <div
+                                        style="margin-top: var(--spacing-xl); display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-md); border-top: 1px solid var(--glass-border); padding-top: var(--spacing-lg);">
+                                        <div style="display: flex; gap: var(--spacing-sm); align-items: center;">
+                                            <div
+                                                style="width: 12px; height: 12px; background: #56B4E9; border-radius: 50%;">
+                                            </div>
+                                            <div>
+                                                <span
+                                                    style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-text-primary);">Movement</span>
+                                                <span
+                                                    style="display: block; font-size: 0.65rem; color: var(--color-text-tertiary);">Long
+                                                    steps + Low angles (Directed relocation)</span>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; gap: var(--spacing-sm); align-items: center;">
+                                            <div
+                                                style="width: 12px; height: 12px; background: #E69F00; border-radius: 50%;">
+                                            </div>
+                                            <div>
+                                                <span
+                                                    style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-text-primary);">Foraging</span>
+                                                <span
+                                                    style="display: block; font-size: 0.65rem; color: var(--color-text-tertiary);">Medium
+                                                    steps + Mod. angles (Search tortuosity)</span>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; gap: var(--spacing-sm); align-items: center;">
+                                            <div
+                                                style="width: 12px; height: 12px; background: #999999; border-radius: 50%;">
+                                            </div>
+                                            <div>
+                                                <span
+                                                    style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-text-primary);">Low-energy</span>
+                                                <span
+                                                    style="display: block; font-size: 0.65rem; color: var(--color-text-tertiary);">Short
+                                                    steps + High angles (Maintenance/Nurturing)</span>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; gap: var(--spacing-sm); align-items: center;">
+                                            <div
+                                                style="width: 12px; height: 12px; background: #1A1A1A; border-radius: 50%; border: 1px solid var(--glass-border);">
+                                            </div>
+                                            <div>
+                                                <span
+                                                    style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-text-primary);">Resting</span>
+                                                <span
+                                                    style="display: block; font-size: 0.65rem; color: var(--color-text-tertiary);">Static
+                                                    (<10m) + Nocturnal temporal clustering</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase 3: RSF Modeling -->
+                        <div style="display: flex; gap: var(--spacing-lg); align-items: flex-start;">
+                            <div
+                                style="flex-shrink: 0; width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">
+                                3</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">Resource
+                                    Selection Function (RSF) Analysis</h3>
+                                <p style="color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6;">
+                                    GLM-based habitat selection modeling comparing used vs. available locations.
+                                    Environmental covariates include vegetation type, distance to water, terrain
+                                    ruggedness, and elevation at 30m resolution.</p>
+                            </div>
+                        </div>
+
+                        <!-- Phase 4: Spatial Analysis -->
+                        <div style="display: flex; gap: var(--spacing-lg); align-items: flex-start;">
+                            <div
+                                style="flex-shrink: 0; width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">
+                                4</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">Spatial
+                                    Prediction & Raster Generation</h3>
+                                <p style="color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6;">
+                                    Prediction of habitat selection intensity across study areas (KW and HV) for each
+                                    elephant, period, and behavioral state. Output as georeferenced GeoTIFF rasters with
+                                    green-to-red color scale.</p>
+                            </div>
+                        </div>
+
+                        <!-- Phase 5: Visualization -->
+                        <div style="display: flex; gap: var(--spacing-lg); align-items: flex-start;">
+                            <div
+                                style="flex-shrink: 0; width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">
+                                5</div>
+                            <div style="flex: 1;">
+                                <h3 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">
+                                    Interactive Web Visualization</h3>
+                                <p style="color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6;">
+                                    Web-based platform for exploring trajectories, behavioral patterns, and RSF
+                                    comparisons. Features include animated playback, density heatmaps, temporal
+                                    analysis, and side-by-side period comparisons.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Environmental Variable Catalog -->
+                <div class="overview-card" style="margin-bottom: var(--spacing-2xl);">
+                    <h2 style="margin-bottom: var(--spacing-xl); text-align: center;">Environmental Variable Catalog
+                    </h2>
+                    <p
+                        style="color: var(--color-text-secondary); text-align: center; margin-bottom: var(--spacing-2xl); max-width: 700px; margin-left: auto; margin-right: auto;">
+                        The iSSA and RSF models utilize 39 high-resolution environmental covariates. All datasets were
+                        orthorectified and resampled to a consistent 30m spatial resolution and projected to UTM Zone
+                        35S.
+                    </p>
+
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg);">
+                        <!-- Topography -->
+                        <div
+                            style="padding: var(--spacing-lg); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-top: 3px solid #56B4E9;">
+                            <h4 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">Topography &
+                                Terrain</h4>
+                            <p
+                                style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: var(--spacing-md);">
+                                Procured from NASA SRTM (30m)</p>
+                            <ul
+                                style="font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.6; list-style: none;">
+                                <li>• Elevation.tif (DEM)</li>
+                                <li>• Slope.tif (Gradient)</li>
+                                <li>• TRI.tif (Ruggedness Index)</li>
+                                <li>• Cos_aspect.tif (Cos-Aspect)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Vegetation & Productivity -->
+                        <div
+                            style="padding: var(--spacing-lg); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-top: 3px solid #E69F00;">
+                            <h4 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">Primary
+                                Productivity</h4>
+                            <p
+                                style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: var(--spacing-md);">
+                                MODIS MOD13Q1 / Sentinel-2</p>
+                            <ul
+                                style="font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.6; list-style: none;">
+                                <li>• NDVI_2024.tif (Veg. Index)</li>
+                                <li>• EVI_2024.tif (Enhanced Veg.)</li>
+                                <li>• LST_2024.tif (Land Surf. Temp)</li>
+                                <li>• LandCover.tif (LULC Classes)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Climate -->
+                        <div
+                            style="padding: var(--spacing-lg); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-top: 3px solid #10B981;">
+                            <h4 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">Bioclimatic
+                                Records</h4>
+                            <p
+                                style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: var(--spacing-md);">
+                                WorldClim v2.1 (Downscaled)</p>
+                            <ul
+                                style="font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.6; list-style: none;">
+                                <li>• bio1.tif to bio19.tif (Temp/Precip)</li>
+                                <li>• (e.g., Annual Mean Temp, Precipitation seasonality, etc.)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Proximity -->
+                        <div
+                            style="padding: var(--spacing-lg); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-top: 3px solid #F59E0B;">
+                            <h4 style="color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">Distance
+                                Covariates</h4>
+                            <p
+                                style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: var(--spacing-md);">
+                                Euclidean Distance (GIS Layers)</p>
+                            <ul
+                                style="font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.6; list-style: none;">
+                                <li>• dist_water_Sources.tif</li>
+                                <li>• dist_Valley_Thicket.tif</li>
+                                <li>• dist_Albany_thckets.tif</li>
+                                <li>• dist_Grassland_Thicket.tif</li>
+                                <li>• (+ 7 other vegetation distances)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Full Exact Raster Names List -->
+                    <div
+                        style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background: rgba(0,0,0,0.3); border-radius: var(--radius-md);">
+                        <h5
+                            style="color: var(--color-text-primary); margin-bottom: var(--spacing-md); font-size: 0.875rem;">
+                            Exact Layer Manifest (39 Layers)</h5>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--color-text-tertiary);">
+                            <div>Elevation.tif</div>
+                            <div>Slope.tif</div>
+                            <div>TRI.tif</div>
+                            <div>Cos_aspect.tif</div>
+                            <div>NDVI_2024.tif</div>
+                            <div>EVI_2024.tif</div>
+                            <div>LST_2024.tif</div>
+                            <div>LandCover.tif</div>
+                            <div>ForestCover.tif</div>
+                            <div>bio1.tif</div>
+                            <div>bio2.tif</div>
+                            <div>bio3.tif</div>
+                            <div>bio4.tif</div>
+                            <div>bio5.tif</div>
+                            <div>bio6.tif</div>
+                            <div>bio7.tif</div>
+                            <div>bio8.tif</div>
+                            <div>bio9.tif</div>
+                            <div>bio10.tif</div>
+                            <div>bio11.tif</div>
+                            <div>bio12.tif</div>
+                            <div>bio13.tif</div>
+                            <div>bio15.tif</div>
+                            <div>bio16.tif</div>
+                            <div>bio17.tif</div>
+                            <div>bio18.tif</div>
+                            <div>bio19.tif</div>
+                            <div>dist_Albany_thckets.tif</div>
+                            <div>dist_Alexandria_grassland.tif</div>
+                            <div>dist_Alluvial_plains.tif</div>
+                            <div>dist_Estuary_wetlands.tif</div>
+                            <div>dist_False_fynbos.tif</div>
+                            <div>dist_Freshwater_wetland.tif</div>
+                            <div>dist_Grassland_Thicket.tif</div>
+                            <div>dist_Gymnosporia_srubveld.tif</div>
+                            <div>dist_Shrub_Forest.tif</div>
+                            <div>dist_Valley_Thicket.tif</div>
+                            <div>dist_water_Sources.tif</div>
+                            <div>&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funding & Acknowledgments -->
+                <div class="overview-card" style="margin-bottom: var(--spacing-2xl);">
+                    <h2 style="margin-bottom: var(--spacing-lg);">Funding & Acknowledgments</h2>
+                    <div class="funding-container"
+                        style="display: flex; gap: var(--spacing-2xl); align-items: center; flex-wrap: wrap;">
+
+                        <!-- Text -->
+                        <div style="flex: 1; min-width: 300px;">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--spacing-md); text-align: left;">
+                                Research permission was granted by Kariega Game Reserve (KGR), and all elephant collaring activities were undertaken as a reserve-led wildlife management action under KGR’s standing Threatened or Protected Species (TOPS) permits (TS-202308000003999) in compliance with National Environmental Management Biodiversity Act 2004. The immobilizations were not initiated or performed by researchers, but were conducted solely under the reserve’s legal management authority. A formal letter from KGR confirming the management nature of the immobilizations, including veterinary oversight, is on file.
+                            </p>
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--spacing-md); text-align: left;">
+                                Non-invasive components of this study adhered to all applicable ethical guidelines. Behavioural observations involved no manipulation or disturbance to elephants and were conducted in compliance with KGR protocols and conducted under KGR staff and therefore did not require institutional animal care approval. Dung sample collection was approved under The University of Pretoria, Faculty of Veterinary Science, Animal Ethics Committee (REC254-19) which is registered with the National Health Research Ethics Council (NHREC) of South Africa.
+                            </p>
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; text-align: left;">
+                                This study was carried out within the Space It Up project funded by the Italian Space Agency, ASI, and the Ministry of University and Research, MUR, under contract n. 2024-5-E.0 - CUP n. I53D24000060005.
+                            </p>
+                        </div>
+
+                        <!-- Logos Grid -->
+                        <div style="flex: 0 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin: 0 auto;">
+                            <!-- CIRGEO -->
+                            <div style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; width: 140px; box-shadow: var(--shadow-sm);">
+                                <img src="elephants/CIRGEO.jpg" alt="CIRGEO" style="max-height: 70px; max-width: 100%; object-fit: contain;">
+                            </div>
+                            <!-- BTEH -->
+                            <div style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; width: 140px; box-shadow: var(--shadow-sm);">
+                                <img src="elephants/bteh_LOGO.webp" alt="Bring The Elephant Home" style="max-height: 70px; max-width: 100%; object-fit: contain;">
+                            </div>
+                            <!-- University -->
+                            <div style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; width: 140px; box-shadow: var(--shadow-sm);">
+                                <img src="elephants/uni_logo.jpg" alt="University Logo" style="max-height: 70px; max-width: 100%; object-fit: contain;">
+                            </div>
+                            <!-- Space It Up -->
+                            <div style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; width: 140px; box-shadow: var(--shadow-sm);">
+                                <img src="elephants/SPACE-IT-UP-bbb-1-1-1-1.png" alt="Space It Up" style="max-height: 70px; max-width: 100%; object-fit: contain;">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="overview-card" id="cite">
+                    <h2 style="margin-bottom: var(--spacing-xl);">References</h2>
+                    <div style="display: grid; gap: var(--spacing-lg);">
+                        <!-- Buderman et al. 2024 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Buderman, F. E., et al. (2024, December). Integrated movement models for individual
+                                tracking and species distribution data. <em
+                                    style="color: var(--color-text-primary);">Methods in Ecology and Evolution</em> 16
+                                (2), 345–361.
+                            </p>
+                        </div>
+
+                        <!-- de Knegt et al. 2010 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                de Knegt, H. J., et al. (2010, November). The spatial scaling of habitat selection by
+                                African elephants. <em style="color: var(--color-text-primary);">Journal of Animal
+                                    Ecology</em> 80 (1), 270–281.
+                            </p>
+                        </div>
+
+                        <!-- DiStefano et al. 2023 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                DiStefano, J., et al. (2023, January). Editorial: Mechanistic, machine learning and
+                                hybrid models of endocrine regulatory systems. <em
+                                    style="color: var(--color-text-primary);">Frontiers in Endocrinology</em> 14.
+                            </p>
+                        </div>
+
+                        <!-- Elith & Leathwick 2009 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Elith, J. and J. R. Leathwick (2009, December). Species distribution models: Ecological
+                                explanation and prediction across space and time. <em
+                                    style="color: var(--color-text-primary);">Annual Review of Ecology</em> 40 (1),
+                                677–697.
+                            </p>
+                        </div>
+
+                        <!-- Getz 2023 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Getz, W. M. (2023, June). An animal movement track segmentation framework for
+                                forecasting range adaptation. <em style="color: var(--color-text-primary);">Frontiers in
+                                    Ecology and Evolution</em> 11.
+                            </p>
+                        </div>
+
+                        <!-- Gilman & Chaloupka 2024 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Gilman, E. and M. Chaloupka (2024, February). Evidence from interpretable machine
+                                learning to inform spatial management. <em
+                                    style="color: var(--color-text-primary);">Ecosphere</em> 15 (2).
+                            </p>
+                        </div>
+
+                        <!-- Guisan et al. 2013 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Guisan, A., et al. (2013, October). Predicting species distributions for conservation
+                                decisions. <em style="color: var(--color-text-primary);">Ecology Letters</em> 16 (12),
+                                1424–1435.
+                            </p>
+                        </div>
+
+                        <!-- Guisan & Zimmermann 2000 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Guisan, A. and N. E. Zimmermann (2000, December). Predictive habitat distribution models
+                                in ecology. <em style="color: var(--color-text-primary);">Ecological Modelling</em> 135
+                                (2–3), 147–186.
+                            </p>
+                        </div>
+
+                        <!-- Jeltsch & Grimm 2020 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Jeltsch, F. and V. Grimm (2020, May). Editorial: thematic series "integrating movement
+                                ecology with biodiversity research". <em
+                                    style="color: var(--color-text-primary);">Movement Ecology</em> 8 (1).
+                            </p>
+                        </div>
+
+                        <!-- Karp et al. 2025 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Karp, M. A., et al. (2025, March). Applications of species distribution modeling to
+                                support marine resource management. <em style="color: var(--color-text-primary);">ICES
+                                    Journal of Marine Science</em> 82 (3).
+                            </p>
+                        </div>
+
+                        <!-- Lu & Rao 2024 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Lu, W.-X. and G.-Y. Rao (2024, June). Integrated framework combining eco-evolutionary
+                                data and SDMs to predict range shifts. <em
+                                    style="color: var(--color-text-primary);">MethodsX</em> 12, 102608.
+                            </p>
+                        </div>
+
+                        <!-- Pohle et al. 2024 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Pohle, J., et al. (2024, February). How to account for behavioral states in
+                                step-selection analysis: a model comparison. <em
+                                    style="color: var(--color-text-primary);">PeerJ</em> 12, e16509.
+                            </p>
+                        </div>
+
+                        <!-- Schmitt et al. 2017 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Schmitt, S., et al. (2017, August). <em
+                                    style="color: var(--color-text-primary);">ssdm</em>: An R package to predict
+                                distribution based on stacked SDMs. <em
+                                    style="color: var(--color-text-primary);">Methods in Ecology and Evolution</em> 8
+                                (12), 1795–1803.
+                            </p>
+                        </div>
+
+                        <!-- Signer et al. 2023 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Signer, J., et al. (2023, December). Simulating animal space use from fitted integrated
+                                step-selection functions (iSSF). <em style="color: var(--color-text-primary);">Methods
+                                    in Ecology and Evolution</em> 15 (1), 43–50.
+                            </p>
+                        </div>
+
+                        <!-- Stasinos et al. 2025 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Stasinos, S., et al. (2025). Biocube: A multimodal dataset for biodiversity research.
+                            </p>
+                        </div>
+
+                        <!-- Sullivan et al. 2018 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Sullivan, L. L., et al. (2018, October). Mechanistically derived dispersal kernels
+                                explain species-level patterns. <em
+                                    style="color: var(--color-text-primary);">Ecology</em> 99 (11), 2415–2420.
+                            </p>
+                        </div>
+
+                        <!-- Talluto et al. 2015 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Talluto, L., et al. (2015, October). Cross-scale integration of knowledge for predicting
+                                species ranges. <em style="color: var(--color-text-primary);">Global Ecology and
+                                    Biogeography</em> 25 (2), 238–249.
+                            </p>
+                        </div>
+
+                        <!-- Talluto et al. 2018 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Talluto, L., et al. (2018, June). Multifaceted biodiversity modelling at macroecological
+                                scales using Gaussian processes. <em style="color: var(--color-text-primary);">Diversity
+                                    and Distributions</em> 24 (10), 1492–1502.
+                            </p>
+                        </div>
+
+                        <!-- Tuia et al. 2022 -->
+                        <div
+                            style="padding: var(--spacing-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-primary);">
+                            <p style="color: var(--color-text-secondary); line-height: 1.8; font-size: 0.9125rem;">
+                                Tuia, D., et al. (2022, February). Perspectives in machine learning for wildlife
+                                conservation. <em style="color: var(--color-text-primary);">Nature Communications</em>
+                                13 (1).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="margin-top: var(--spacing-2xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--glass-border);">
+                        <h3 style="color: var(--color-text-primary); margin-bottom: var(--spacing-md);">Cite This
+                            Platform</h3>
+                        <div
+                            style="background: rgba(0,0,0,0.2); padding: var(--spacing-lg); border-radius: var(--radius-md); font-family: var(--font-family-mono); font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.8;">
+                            [Harin Aiyanna C R; Francesco Pirotti; Brooke Friswold; Antoinette van de Water]. (2026).
+                            Interactive Elephant
+                            Movement and Behavioral
+                            Analysis Platform:
+                            Examining fence removal effects using HMM and RSF modeling. <em> Interdepartmental Research
+                                Center of Geomatics (CIRGEO), University of Padova</em> <em> and Bring The Elephant
+                                Home</em>.
+                        </div>
+                    </div>
+
+                    <div style="margin-top: var(--spacing-lg); display: flex; gap: var(--spacing-md);">
+                        <a href="index.html" class="btn btn-primary">Back to Overview</a>
+                        <a href="explorer.html" class="btn btn-secondary">Explore Data</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; Elephant Movement Analysis Platform. Research data visualization.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

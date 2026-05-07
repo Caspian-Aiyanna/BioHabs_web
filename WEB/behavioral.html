@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92BWH0K0ML"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-92BWH0K0ML');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavioral Analysis | Elephant Movement Analysis</title>
+    <meta name="description" content="Interactive behavioral state analysis for elephants across BACI study periods">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css?v=3">
+    <link rel="stylesheet" href="css/behavioral.css?v=3">
+</head>
+
+<body>
+    <script>if(localStorage.getItem('theme')==='light') document.body.classList.add('light-theme');</script>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+                <span class="brand-text">Elephant Movement Analysis</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Overview</a></li>
+                <li><a href="methodology.html" class="nav-link">Methodology</a></li>
+                <li><a href="explorer.html" class="nav-link">Trajectory Explorer</a></li>
+                <li><a href="behavioral.html" class="nav-link active">Behavioral Analysis</a></li>
+                <li><a href="ghost-fence.html" class="nav-link">Ghost Fence</a></li>
+                <li><a href="rsf-comparison.html" class="nav-link">RSF Comparison</a></li>
+            </ul>
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+                <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:block; width:20px; height:20px;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="behavioral-container">
+        <!-- Left Panel - Info & Summary -->
+        <div class="info-panel">
+
+            <div class="panel-section">
+                <h3 class="panel-title">Elephant Profile</h3>
+                <div class="elephant-profile-card" id="elephant-profile">
+                    <div class="profile-image">
+                        <img id="profile-img" src="elephants/Kamva_1.png" alt="Elephant">
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="profile-name">Kamva (E1)</h3>
+                        <div class="profile-badge" id="profile-badge">KW - Pre, Interim</div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <span class="profile-stat-label">Home Range</span>
+                            <span class="profile-stat-value" id="profile-range">Kariega West</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-label">Data Points</span>
+                            <span class="profile-stat-value" id="profile-points">-</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-label">Selected Period</span>
+                            <span class="profile-stat-value" id="profile-period">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Summary Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Total Points</div>
+                        <div class="stat-value" id="total-points">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Duration (days)</div>
+                        <div class="stat-value" id="duration-days">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <span class="color-dot resting"></span>Low-energy %
+                        </div>
+                        <div class="stat-value" id="resting-pct">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <span class="color-dot Resting"></span>Resting %
+                        </div>
+                        <div class="stat-value" id="Resting-pct">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <span class="color-dot foraging"></span>Foraging %
+                        </div>
+                        <div class="stat-value" id="foraging-pct">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <span class="color-dot movement"></span>Movement %
+                        </div>
+                        <div class="stat-value" id="movement-pct">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <span class="color-dot bounce"></span>Bounce %
+                        </div>
+                        <div class="stat-value" id="bounce-pct">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Rest/Forage Ratio</div>
+                        <div class="stat-value" id="rest-forage-ratio">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Date Range</div>
+                        <div class="stat-value" style="font-size: 0.75rem;" id="date-range">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Study Design Info</h3>
+                <p style="color: var(--color-text-tertiary); font-size: 0.875rem; line-height: 1.6;">
+                    Elephants E1-E4 stayed in Kariega West (KW), while E5-E6 moved from Harvestvale (HV) to the main
+                    study area after fence removal.
+                </p>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">HMM Anchor Parameters</h3>
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.75rem; color: var(--color-text-tertiary);">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <th style="text-align: left; padding: 4px 0; color: var(--color-text-secondary);">State</th>
+                            <th style="text-align: right; padding: 4px 0; color: var(--color-text-secondary);">Step (m)</th>
+                            <th style="text-align: right; padding: 4px 0; color: var(--color-text-secondary);">Turn</th>
+                            <th style="text-align: right; padding: 4px 0; color: var(--color-text-secondary);">κ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 4px 0;">Resting</td>
+                            <td style="text-align: right;">~1.2</td>
+                            <td style="text-align: right;">Random</td>
+                            <td style="text-align: right;">0.05</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 4px 0;">Low-energy</td>
+                            <td style="text-align: right;">~8.0</td>
+                            <td style="text-align: right;">Random</td>
+                            <td style="text-align: right;">0.20</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 4px 0;">Foraging</td>
+                            <td style="text-align: right;">~60</td>
+                            <td style="text-align: right;">Random</td>
+                            <td style="text-align: right;">0.40</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px 0;">Movement</td>
+                            <td style="text-align: right;">~250</td>
+                            <td style="text-align: right;">Directed</td>
+                            <td style="text-align: right;">0.60</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="color: var(--color-text-tertiary); font-size: 0.7rem; margin-top: 6px; font-style: italic;">Source: 04_ecological_behavior_analysis_v5.R</p>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Day vs Night Budget</h3>
+                <div style="font-size: 0.78rem;">
+                    <div style="margin-bottom: 8px;">
+                        <div style="color: var(--color-text-secondary); font-size: 0.7rem; margin-bottom: 4px; text-transform: uppercase;">☀️ Day (06:00–18:00)</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px; color: var(--color-text-tertiary);">
+                            <span>Foraging: 42.1%</span>
+                            <span>Low-energy: 26.1%</span>
+                            <span>Movement: 20.8%</span>
+                            <span>Resting: 9.3%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="color: var(--color-text-secondary); font-size: 0.7rem; margin-bottom: 4px; text-transform: uppercase;">🌙 Night (18:00–06:00)</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px; color: var(--color-text-tertiary);">
+                            <span>Resting: 33.0%</span>
+                            <span>Low-energy: 31.1%</span>
+                            <span>Foraging: 25.1%</span>
+                            <span>Movement: 8.4%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Sex &times; Period Comparison</h3>
+                <div style="font-size: 0.75rem;">
+                    <div style="margin-bottom: 10px;">
+                        <div style="color: var(--color-text-secondary); font-size: 0.68rem; text-transform: uppercase; margin-bottom: 3px;">Males PRE (E1, E2, E6)</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary);">
+                            <span>Foraging: 36.7%</span><span>Low-energy: 26.5%</span>
+                            <span>Resting: 22.3%</span><span>Movement: 12.7%</span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="color: var(--color-text-secondary); font-size: 0.68rem; text-transform: uppercase; margin-bottom: 3px;">Females PRE (E3, E4, E5)</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary);">
+                            <span>Foraging: 32.4%</span><span>Low-energy: 32.0%</span>
+                            <span>Resting: 22.8%</span><span>Movement: 9.9%</span>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px;">
+                        <div style="color: var(--color-primary); font-size: 0.68rem; text-transform: uppercase; margin-bottom: 3px;">Females POST &#x2191; (E3, E4, E5)</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; color: var(--color-text-tertiary);">
+                            <span>Foraging: 32.8%</span><span>Low-energy: 26.4%</span>
+                            <span style="color: #6fcf97; font-weight: 600;">Movement: 21.4% &#x2191;</span><span>Resting: 18.8%</span>
+                        </div>
+                        <div style="color: var(--color-text-tertiary); font-size: 0.65rem; font-style: italic; margin-top: 4px;">Massive movement increase reflecting post-fence exploration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Visualization Area -->
+        <div class="visualization-area">
+            <div class="dashboard-header"
+                style="padding: var(--spacing-md) var(--spacing-xl); background: var(--color-bg-secondary); border-bottom: 1px solid var(--glass-border);">
+                <h2 style="font-size: 1.5rem; margin: 0; color: var(--color-text-primary);">Dashboard Overview</h2>
+                <p style="font-size: 0.8rem; color: var(--color-text-tertiary); margin: 0;">Click on any chart to enlarge and view details</p>
+            </div>
+
+            <div class="top-controls-bar" style="display: flex; gap: 20px; padding: 10px 20px; background: var(--color-bg-secondary); border-bottom: 1px solid var(--glass-border); flex-wrap: wrap; align-items: flex-start;">
+                <!-- Elephant Selection -->
+                <div style="flex: 2; min-width: 350px;">
+                    <h3 style="font-size: 0.7rem; color: var(--color-text-tertiary); margin-top: 0; margin-bottom: 0.6rem; text-transform: uppercase;">Elephant Selection</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        <button class="elephant-btn active male" data-elephant="E1" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; min-width: 60px;">Kamva</button>
+                        <button class="elephant-btn male" data-elephant="E2" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; min-width: 60px;">Kambaku</button>
+                        <button class="elephant-btn female" data-elephant="E3" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; min-width: 60px;">Bukela</button>
+                        <button class="elephant-btn female" data-elephant="E4" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; min-width: 60px;">Half Moon</button>
+                        <button class="elephant-btn female" data-elephant="E5" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; min-width: 60px;">Beauty</button>
+                        <button class="elephant-btn male" data-elephant="E6" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; min-width: 60px;">Balu</button>
+                        
+                        <div style="width: 100%; height: 2px;"></div> <!-- visual break -->
+                        
+                        <button class="elephant-btn male" data-elephant="MALES" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; background: rgba(86, 163, 166, 0.1); border-color: var(--color-male);">All Males</button>
+                        <button class="elephant-btn female" data-elephant="FEMALES" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; background: rgba(232, 140, 125, 0.1); border-color: var(--color-female);">All Females</button>
+                        <button class="elephant-btn" data-elephant="ALL" style="flex: 1 1 auto; padding: 8px 8px; font-size: 0.75rem; background: rgba(255, 255, 255, 0.05);">All Elephants</button>
+                    </div>
+                </div>
+                
+                <!-- Study Period & Refine Year -->
+                <div style="flex: 1; min-width: 250px; max-width: 400px; display: flex; flex-direction: column; justify-content: flex-start;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.6rem;">
+                        <h3 style="font-size: 0.7rem; color: var(--color-text-tertiary); margin: 0; text-transform: uppercase;">Study Period</h3>
+                    </div>
+                    
+                    <div class="period-selector" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px;">
+                        <button class="period-btn active" data-period="PRE" style="padding: 4px 2px; font-size: 0.75rem; text-align: center; border-radius: 4px;">PRE</button>
+                        <button class="period-btn" data-period="INTERIM" style="padding: 4px 2px; font-size: 0.75rem; text-align: center; border-radius: 4px;">Interim</button>
+                        <button class="period-btn" data-period="POST" style="padding: 4px 2px; font-size: 0.75rem; text-align: center; border-radius: 4px;">POST</button>
+                    </div>
+                    <div class="period-selector" style="display: grid; grid-template-columns: 1fr; gap: 6px; margin-bottom: 8px;">
+                        <button class="period-btn" data-period="ALL" style="padding: 4px 8px; font-size: 0.75rem; border-radius: 4px;">All Phases</button>
+                    </div>
+                    
+                    <h3 style="font-size: 0.7rem; color: var(--color-text-tertiary); margin: 4px 0 6px 0; text-transform: uppercase;">Refine Year</h3>
+                    <select id="global-year-select" class="year-filter-select" style="width: 100%; padding: 6px 8px; background: var(--color-bg-tertiary); color: var(--color-text-primary); border: 1px solid var(--glass-border); border-radius: 4px; font-size: 0.75rem; cursor: pointer;">
+                        <option value="all">All Available Years</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Card 1: Time Budget -->
+                <div class="mini-viz-card" data-viz="time-budget">
+                    <div class="card-header-mini">Time Budget</div>
+                    <div class="mini-chart-container" id="container-time-budget">
+                        <canvas id="time-budget-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Card 2: Seasonal -->
+                <div class="mini-viz-card" data-viz="seasonal">
+                    <div class="card-header-mini">Seasonal Patterns</div>
+                    <div class="mini-chart-container" id="container-seasonal">
+                        <canvas id="seasonal-chart"></canvas>
+                    </div>
+                    <!-- Hidden controls to be moved to modal -->
+                    <div id="controls-seasonal" class="hidden-controls">
+                        <div class="seasonal-controls"
+                            style="margin: 0; padding: 10px; background: transparent; border: none;">
+                            <div class="control-group">
+                                <label>Year:</label>
+                                <select id="year-select" class="seasonal-select">
+                                    <option value="all">All Years</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label>Month:</label>
+                                <select id="month-select" class="seasonal-select">
+                                    <option value="all">All Months</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Toggle Buttons -->
+                    <div id="seasonal-toggle-container" class="card-toggles mt-sm" style="padding: 10px; display: none;">
+                        <h3 class="panel-subtitle" style="font-size: 0.75rem; color: var(--color-text-tertiary); margin-bottom: 0.5rem; text-transform: uppercase;">Seasonal View</h3>
+                        <div class="analysis-selector" style="grid-template-columns: 1fr 1fr;">
+                            <button class="seasonal-mode-btn active" data-mode="percent" style="padding: 4px; font-size: 0.75rem;">Proportion (%)</button>
+                            <button class="seasonal-mode-btn" data-mode="count" style="padding: 4px; font-size: 0.75rem;">Observations</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Temporal -->
+                <div class="mini-viz-card" data-viz="temporal">
+                    <div class="card-header-mini">Temporal (24h)</div>
+                    <div class="mini-chart-container" id="container-temporal">
+                        <canvas id="temporal-chart"></canvas>
+                    </div>
+                    <!-- Toggle Buttons -->
+                    <div id="temporal-toggle-container" class="card-toggles mt-sm" style="padding: 10px; display: none;">
+                        <h3 class="panel-subtitle" style="font-size: 0.75rem; color: var(--color-text-tertiary); margin-bottom: 0.5rem; text-transform: uppercase;">Temporal View</h3>
+                        <div class="analysis-selector" style="grid-template-columns: 1fr 1fr;">
+                            <button class="temporal-mode-btn active" data-mode="percent" style="padding: 4px; font-size: 0.75rem;">Proportion (%)</button>
+                            <button class="temporal-mode-btn" data-mode="count" style="padding: 4px; font-size: 0.75rem;">Observations</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Comparison -->
+                <div class="mini-viz-card" data-viz="comparison">
+                    <div class="card-header-mini">BACI Comparison</div>
+                    <div class="mini-chart-container" id="container-comparison">
+                        <canvas id="comparison-chart"></canvas>
+                    </div>
+                    <!-- Toggle Buttons -->
+                    <div id="baci-mode-container" class="card-toggles mt-sm" style="padding: 10px; display: none;">
+                        <h3 class="panel-subtitle" style="font-size: 0.75rem; color: var(--color-text-tertiary); margin-bottom: 0.5rem; text-transform: uppercase;">BACI Scaling</h3>
+                        <div class="analysis-selector" style="grid-template-columns: 1fr 1fr;">
+                            <button class="mode-btn active" data-mode="absolute" style="padding: 4px; font-size: 0.75rem;">Absolute (%)</button>
+                            <button class="mode-btn" data-mode="delta" style="padding: 4px; font-size: 0.75rem;">Delta (%)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+<section class="publication-gallery" id="rq2-gallery">
+    <div class="gallery-container">
+        <h2 class="gallery-main-title" style="color: var(--color-primary);">RQ2: Spatial Behavioral Cores</h2>
+        <p class="gallery-subtitle">High-resolution spatial analysis of priority cores, movement corridors, resting refugia, and low-energy areas.</p>
+        <div class="gallery-grid">
+            
+            <div class="gallery-card">
+                <img src="paper/P2.1_pre_HV_Priority_Cores_Map.png" alt="P2.1 pre HV Priority Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.1 pre HV Priority Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.1_pre_HV_Priority_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.1_pre_HV_Priority_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.1_pre_KW_Priority_Cores_Map.png" alt="P2.1 pre KW Priority Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.1 pre KW Priority Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.1_pre_KW_Priority_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.1_pre_KW_Priority_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.1_post_Priority_Cores_Map.png" alt="P2.1 post Priority Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.1 post Priority Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.1_post_Priority_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.1_post_Priority_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.2_pre_HV_Movement_Corridors_Map.png" alt="P2.2 pre HV Movement Corridors Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.2 pre HV Movement Corridors Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.2_pre_HV_Movement_Corridors_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.2_pre_HV_Movement_Corridors_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.2_pre_KW_Movement_Corridors_Map.png" alt="P2.2 pre KW Movement Corridors Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.2 pre KW Movement Corridors Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.2_pre_KW_Movement_Corridors_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.2_pre_KW_Movement_Corridors_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.2_post_Movement_Corridors_Map.png" alt="P2.2 post Movement Corridors Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.2 post Movement Corridors Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.2_post_Movement_Corridors_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.2_post_Movement_Corridors_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.3_pre_HV_Resting_Refugia_Map.png" alt="P2.3 pre HV Resting Refugia Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.3 pre HV Resting Refugia Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.3_pre_HV_Resting_Refugia_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.3_pre_HV_Resting_Refugia_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.3_pre_KW_Resting_Refugia_Map.png" alt="P2.3 pre KW Resting Refugia Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.3 pre KW Resting Refugia Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.3_pre_KW_Resting_Refugia_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.3_pre_KW_Resting_Refugia_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.3_post_Resting_Refugia_Map.png" alt="P2.3 post Resting Refugia Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.3 post Resting Refugia Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.3_post_Resting_Refugia_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.3_post_Resting_Refugia_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.4_pre_HV_LowEnergy_Cores_Map.png" alt="P2.4 pre HV LowEnergy Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.4 pre HV LowEnergy Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.4_pre_HV_LowEnergy_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.4_pre_HV_LowEnergy_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.4_pre_KW_LowEnergy_Cores_Map.png" alt="P2.4 pre KW LowEnergy Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.4 pre KW LowEnergy Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.4_pre_KW_LowEnergy_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.4_pre_KW_LowEnergy_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.4_post_LowEnergy_Cores_Map.png" alt="P2.4 post LowEnergy Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.4 post LowEnergy Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.4_post_LowEnergy_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.4_post_LowEnergy_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</section>
+
+<section class="publication-gallery" id="rq3-gallery" style="margin-top: 2rem;">
+    <div class="gallery-container">
+        <h2 class="gallery-main-title" style="color: var(--color-primary);">RQ3: Demographics & Dynamics</h2>
+        <p class="gallery-subtitle">Sex-based activity budgets, home range analysis, family group phases, and diurnal clocks.</p>
+        <div class="gallery-grid">
+            
+            <div class="gallery-card">
+                <img src="paper/P3.1_Sex_Activity_Budget_Bar.png" alt="P3.1 Sex Activity Budget Bar" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.1 Sex Activity Budget Bar</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.1_Sex_Activity_Budget_Bar.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.1_Sex_Activity_Budget_Bar.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.1_Sex_HomeRange_DotPlot.png" alt="P3.1 Sex HomeRange DotPlot" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.1 Sex HomeRange DotPlot</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.1_Sex_HomeRange_DotPlot.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.1_Sex_HomeRange_DotPlot.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.1_Sex_HomeRange_Map.png" alt="P3.1 Sex HomeRange Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.1 Sex HomeRange Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.1_Sex_HomeRange_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.1_Sex_HomeRange_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.1_Sex_HomeRange_Map_Faceted.png" alt="P3.1 Sex HomeRange Map Faceted" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.1 Sex HomeRange Map Faceted</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.1_Sex_HomeRange_Map_Faceted.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.1_Sex_HomeRange_Map_Faceted.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.2_FamilyGroup_Phase_Budget.png" alt="P3.2 FamilyGroup Phase Budget" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.2 FamilyGroup Phase Budget</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.2_FamilyGroup_Phase_Budget.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.2_FamilyGroup_Phase_Budget.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.2_FamilyGroup_Phase_Map.png" alt="P3.2 FamilyGroup Phase Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.2 FamilyGroup Phase Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.2_FamilyGroup_Phase_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.2_FamilyGroup_Phase_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.2_FamilyGroup_Phase_Map_Faceted.png" alt="P3.2 FamilyGroup Phase Map Faceted" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.2 FamilyGroup Phase Map Faceted</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.2_FamilyGroup_Phase_Map_Faceted.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.2_FamilyGroup_Phase_Map_Faceted.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.3_Diurnal_Clocks.png" alt="P3.3 Diurnal Clocks" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.3 Diurnal Clocks</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.3_Diurnal_Clocks.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.3_Diurnal_Clocks.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.4a_Cumulative_HR_Expansion_All.png" alt="P3.4a Cumulative HR Expansion All" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.4a Cumulative HR Expansion All</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.4a_Cumulative_HR_Expansion_All.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.4a_Cumulative_HR_Expansion_All.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.4b_Cumulative_HR_Expansion_Core.png" alt="P3.4b Cumulative HR Expansion Core" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.4b Cumulative HR Expansion Core</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.4b_Cumulative_HR_Expansion_Core.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.4b_Cumulative_HR_Expansion_Core.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        <h3 class="gallery-section-title" style="margin-top: 3rem;">Cohort Analysis: Female RSF Selection</h3>
+        <div class="gallery-grid">
+            
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E3_Foraging.png" alt="Female Cohort RSF Selection E3 Foraging" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E3 Foraging</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E3_Foraging.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E3_Foraging.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E3_Movement.png" alt="Female Cohort RSF Selection E3 Movement" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E3 Movement</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E3_Movement.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E3_Movement.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E3_Resting.png" alt="Female Cohort RSF Selection E3 Resting" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E3 Resting</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E3_Resting.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E3_Resting.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E3_Sleeping.png" alt="Female Cohort RSF Selection E3 Sleeping" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E3 Sleeping</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E3_Sleeping.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E3_Sleeping.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E4_Foraging.png" alt="Female Cohort RSF Selection E4 Foraging" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E4 Foraging</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E4_Foraging.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E4_Foraging.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E4_Movement.png" alt="Female Cohort RSF Selection E4 Movement" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E4 Movement</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E4_Movement.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E4_Movement.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E4_Resting.png" alt="Female Cohort RSF Selection E4 Resting" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E4 Resting</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E4_Resting.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E4_Resting.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E4_Sleeping.png" alt="Female Cohort RSF Selection E4 Sleeping" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E4 Sleeping</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E4_Sleeping.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E4_Sleeping.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E5_Foraging.png" alt="Female Cohort RSF Selection E5 Foraging" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E5 Foraging</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E5_Foraging.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E5_Foraging.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E5_Movement.png" alt="Female Cohort RSF Selection E5 Movement" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E5 Movement</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E5_Movement.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E5_Movement.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E5_Resting.png" alt="Female Cohort RSF Selection E5 Resting" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E5 Resting</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E5_Resting.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E5_Resting.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E5_Sleeping.png" alt="Female Cohort RSF Selection E5 Sleeping" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E5 Sleeping</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E5_Sleeping.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E5_Sleeping.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</section>
+
+<section class="publication-gallery" id="rq4-gallery" style="margin-top: 2rem; margin-bottom: 3rem;">
+    <div class="gallery-container">
+        <h2 class="gallery-main-title" style="color: var(--color-primary);">RQ4: Ghost Fence Effect</h2>
+        <p class="gallery-subtitle">Analysis of boundary interactions, tortuosity decay, and trajectory crossings post-fence removal.</p>
+        <div class="gallery-grid">
+            
+            <div class="gallery-card">
+                <img src="paper/P4.1_Ghost_Fence_Decay.png" alt="P4.1 Ghost Fence Decay" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.1 Ghost Fence Decay</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.1_Ghost_Fence_Decay.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.1_Ghost_Fence_Decay.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P4.1_Tortuosity_Decay.png" alt="P4.1 Tortuosity Decay" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.1 Tortuosity Decay</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.1_Tortuosity_Decay.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.1_Tortuosity_Decay.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P4.2_Boundary_Interactions.png" alt="P4.2 Boundary Interactions" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.2 Boundary Interactions</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.2_Boundary_Interactions.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.2_Boundary_Interactions.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P4.3_Ghost_Fence_Persistence.png" alt="P4.3 Ghost Fence Persistence" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.3 Ghost Fence Persistence</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.3_Ghost_Fence_Persistence.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.3_Ghost_Fence_Persistence.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P4.4_Trajectory_Crossings.png" alt="P4.4 Trajectory Crossings" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.4 Trajectory Crossings</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.4_Trajectory_Crossings.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.4_Trajectory_Crossings.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</section>
+
+            <div class="loading-overlay" id="loading-overlay">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Loading behavioral data...</div>
+            </div>
+        </div> <!-- Closes visualization-area -->
+
+
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="js/main.js?v=3"></script>
+    <script src="js/behavioral.js?v=3"></script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

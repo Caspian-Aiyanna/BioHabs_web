@@ -1,0 +1,642 @@
+<section class="publication-gallery" id="publication-gallery">
+    <div class="gallery-container">
+        <h2 class="gallery-main-title">Publication Assets Gallery</h2>
+        <p class="gallery-subtitle">High-resolution scientific outputs and visualizations for direct download and citation.</p>
+        <h3 class="gallery-section-title">Panel 2: Spatial Behavioral Cores</h3>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="paper/P2.1_post_Priority_Cores_Map.png" alt="P2.1 post Priority Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.1 post Priority Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.1_post_Priority_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.1_post_Priority_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.1_pre_HV_Priority_Cores_Map.png" alt="P2.1 pre HV Priority Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.1 pre HV Priority Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.1_pre_HV_Priority_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.1_pre_HV_Priority_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.1_pre_KW_Priority_Cores_Map.png" alt="P2.1 pre KW Priority Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.1 pre KW Priority Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.1_pre_KW_Priority_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.1_pre_KW_Priority_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.2_post_Movement_Corridors_Map.png" alt="P2.2 post Movement Corridors Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.2 post Movement Corridors Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.2_post_Movement_Corridors_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.2_post_Movement_Corridors_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.2_pre_HV_Movement_Corridors_Map.png" alt="P2.2 pre HV Movement Corridors Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.2 pre HV Movement Corridors Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.2_pre_HV_Movement_Corridors_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.2_pre_HV_Movement_Corridors_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.2_pre_KW_Movement_Corridors_Map.png" alt="P2.2 pre KW Movement Corridors Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.2 pre KW Movement Corridors Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.2_pre_KW_Movement_Corridors_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.2_pre_KW_Movement_Corridors_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.3_post_Resting_Refugia_Map.png" alt="P2.3 post Resting Refugia Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.3 post Resting Refugia Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.3_post_Resting_Refugia_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.3_post_Resting_Refugia_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.3_pre_HV_Resting_Refugia_Map.png" alt="P2.3 pre HV Resting Refugia Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.3 pre HV Resting Refugia Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.3_pre_HV_Resting_Refugia_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.3_pre_HV_Resting_Refugia_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.3_pre_KW_Resting_Refugia_Map.png" alt="P2.3 pre KW Resting Refugia Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.3 pre KW Resting Refugia Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.3_pre_KW_Resting_Refugia_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.3_pre_KW_Resting_Refugia_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.4_post_LowEnergy_Cores_Map.png" alt="P2.4 post LowEnergy Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.4 post LowEnergy Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.4_post_LowEnergy_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.4_post_LowEnergy_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.4_pre_HV_LowEnergy_Cores_Map.png" alt="P2.4 pre HV LowEnergy Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.4 pre HV LowEnergy Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.4_pre_HV_LowEnergy_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.4_pre_HV_LowEnergy_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P2.4_pre_KW_LowEnergy_Cores_Map.png" alt="P2.4 pre KW LowEnergy Cores Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P2.4 pre KW LowEnergy Cores Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P2.4_pre_KW_LowEnergy_Cores_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P2.4_pre_KW_LowEnergy_Cores_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="gallery-section-title">Panel 3: Demographics & Dynamics</h3>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="paper/P3.1_Sex_Activity_Budget_Bar.png" alt="P3.1 Sex Activity Budget Bar" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.1 Sex Activity Budget Bar</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.1_Sex_Activity_Budget_Bar.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.1_Sex_Activity_Budget_Bar.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.1_Sex_HomeRange_DotPlot.png" alt="P3.1 Sex HomeRange DotPlot" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.1 Sex HomeRange DotPlot</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.1_Sex_HomeRange_DotPlot.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.1_Sex_HomeRange_DotPlot.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.1_Sex_HomeRange_Map.png" alt="P3.1 Sex HomeRange Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.1 Sex HomeRange Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.1_Sex_HomeRange_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.1_Sex_HomeRange_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.1_Sex_HomeRange_Map_Faceted.png" alt="P3.1 Sex HomeRange Map Faceted" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.1 Sex HomeRange Map Faceted</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.1_Sex_HomeRange_Map_Faceted.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.1_Sex_HomeRange_Map_Faceted.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.2_FamilyGroup_Phase_Budget.png" alt="P3.2 FamilyGroup Phase Budget" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.2 FamilyGroup Phase Budget</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.2_FamilyGroup_Phase_Budget.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.2_FamilyGroup_Phase_Budget.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.2_FamilyGroup_Phase_Map.png" alt="P3.2 FamilyGroup Phase Map" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.2 FamilyGroup Phase Map</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.2_FamilyGroup_Phase_Map.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.2_FamilyGroup_Phase_Map.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.2_FamilyGroup_Phase_Map_Faceted.png" alt="P3.2 FamilyGroup Phase Map Faceted" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.2 FamilyGroup Phase Map Faceted</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.2_FamilyGroup_Phase_Map_Faceted.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.2_FamilyGroup_Phase_Map_Faceted.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.3_Diurnal_Clocks.png" alt="P3.3 Diurnal Clocks" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.3 Diurnal Clocks</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.3_Diurnal_Clocks.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.3_Diurnal_Clocks.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.4a_Cumulative_HR_Expansion_All.png" alt="P3.4a Cumulative HR Expansion All" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.4a Cumulative HR Expansion All</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.4a_Cumulative_HR_Expansion_All.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.4a_Cumulative_HR_Expansion_All.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P3.4b_Cumulative_HR_Expansion_Core.png" alt="P3.4b Cumulative HR Expansion Core" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P3.4b Cumulative HR Expansion Core</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P3.4b_Cumulative_HR_Expansion_Core.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P3.4b_Cumulative_HR_Expansion_Core.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="gallery-section-title">Panel 4: Ghost Fence Effect</h3>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="paper/P4.1_Ghost_Fence_Decay.png" alt="P4.1 Ghost Fence Decay" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.1 Ghost Fence Decay</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.1_Ghost_Fence_Decay.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.1_Ghost_Fence_Decay.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P4.1_Tortuosity_Decay.png" alt="P4.1 Tortuosity Decay" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.1 Tortuosity Decay</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.1_Tortuosity_Decay.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.1_Tortuosity_Decay.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P4.2_Boundary_Interactions.png" alt="P4.2 Boundary Interactions" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.2 Boundary Interactions</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.2_Boundary_Interactions.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.2_Boundary_Interactions.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P4.3_Ghost_Fence_Persistence.png" alt="P4.3 Ghost Fence Persistence" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.3 Ghost Fence Persistence</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.3_Ghost_Fence_Persistence.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.3_Ghost_Fence_Persistence.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/P4.4_Trajectory_Crossings.png" alt="P4.4 Trajectory Crossings" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">P4.4 Trajectory Crossings</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/P4.4_Trajectory_Crossings.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('P4.4_Trajectory_Crossings.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="gallery-section-title">Cohort Analysis: Female RSF Selection</h3>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E3_Foraging.png" alt="Female Cohort RSF Selection E3 Foraging" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E3 Foraging</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E3_Foraging.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E3_Foraging.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E3_Movement.png" alt="Female Cohort RSF Selection E3 Movement" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E3 Movement</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E3_Movement.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E3_Movement.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E3_Resting.png" alt="Female Cohort RSF Selection E3 Resting" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E3 Resting</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E3_Resting.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E3_Resting.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E3_Sleeping.png" alt="Female Cohort RSF Selection E3 Sleeping" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E3 Sleeping</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E3_Sleeping.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E3_Sleeping.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E4_Foraging.png" alt="Female Cohort RSF Selection E4 Foraging" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E4 Foraging</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E4_Foraging.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E4_Foraging.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E4_Movement.png" alt="Female Cohort RSF Selection E4 Movement" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E4 Movement</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E4_Movement.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E4_Movement.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E4_Resting.png" alt="Female Cohort RSF Selection E4 Resting" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E4 Resting</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E4_Resting.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E4_Resting.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E4_Sleeping.png" alt="Female Cohort RSF Selection E4 Sleeping" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E4 Sleeping</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E4_Sleeping.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E4_Sleeping.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E5_Foraging.png" alt="Female Cohort RSF Selection E5 Foraging" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E5 Foraging</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E5_Foraging.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E5_Foraging.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E5_Movement.png" alt="Female Cohort RSF Selection E5 Movement" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E5 Movement</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E5_Movement.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E5_Movement.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E5_Resting.png" alt="Female Cohort RSF Selection E5 Resting" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E5 Resting</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E5_Resting.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E5_Resting.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="paper/Female_Cohort_RSF_Selection_E5_Sleeping.png" alt="Female Cohort RSF Selection E5 Sleeping" class="gallery-img" loading="lazy">
+                <div class="gallery-card-content">
+                    <h4 class="gallery-item-title">Female Cohort RSF Selection E5 Sleeping</h4>
+                    <div class="gallery-actions">
+                        <a href="paper/Female_Cohort_RSF_Selection_E5_Sleeping.png" download class="btn-gallery download-btn" title="Download High-Res Image">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                        <button class="btn-gallery cite-btn" onclick="copyCitation('Female_Cohort_RSF_Selection_E5_Sleeping.png')" title="Copy Citation">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            Cite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
