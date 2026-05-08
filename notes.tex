@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{BioHabs Platform: Interface Architecture and Data Documentation}
+\author{Project Documentation}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+This document outlines the architecture, data structure, and script organization of the BioHabs web platform. It is designed to provide clear, objective guidance for deployment, maintenance, and future modifications. The platform utilizes a decoupled static architecture, meaning it does not require a backend server environment (such as Node.js or Python) and can be hosted via any standard web server.
+
+\section{Platform Architecture}
+The frontend interface comprises 6 primary HTML nodes (pages), each serving a specific analytical or narrative function:
+\begin{itemize}
+    \item \texttt{index.html}: The main landing page, containing the study overview, timeline, and individual elephant profiles.
+    \item \texttt{methodology.html}: Details the analytical pipeline, HMM decoding framework, and RSF modeling parameters.
+    \item \texttt{explorer.html}: The Trajectory Explorer interface for animating and filtering temporal movement data.
+    \item \texttt{behavioral.html}: Displays static activity budgets, home range metrics, and statistical charts.
+    \item \texttt{ghost-fence.html}: A narrative interface explaining boundary interactions and spatial memory behaviors.
+    \item \texttt{rsf-comparison.html}: A side-by-side comparative tool for evaluating Resource Selection Function (RSF) heatmaps across different periods and states.
+\end{itemize}
+
+\section{Script Organization and Roles}
+All functional logic is contained within the \texttt{js/} directory. Each script is scoped to a specific HTML node or global utility to ensure strict modularity and prevent variable conflicts.
+
+\begin{itemize}
+    \item \textbf{\texttt{main.js}}: Handles global site functionality, including navigation menu interactions, mobile responsiveness toggles, and common utility functions loaded across all pages.
+    \item \textbf{\texttt{theme.js}}: Manages the user interface theme, specifically the toggling mechanism between light and dark modes, and stores these preferences locally in the browser.
+    \item \textbf{\texttt{explorer.js}}: Controls the logic for the Trajectory Explorer page. It manages the Leaflet map instance, the timeline scrubber, and the temporal animation sequence of the elephant GPS points.
+    \item \textbf{\texttt{rsf-comparison.js}}: Drives the RSF Comparison interface. It is responsible for synchronizing multiple side-by-side Leaflet maps, ensuring that zooming or panning on one map reflects on the others, and manages the layer toggling for different behavioral states.
+    \item \textbf{\texttt{behavioral.js}}: Responsible for rendering the interactive charts and statistical graphs on the behavioral analysis page, interpreting the compiled summary data.
+    \item \textbf{\texttt{ghost-fence.js}}: Executes the "scrolly-telling" narrative logic on the Ghost Fence page. It coordinates the map view, zoom levels, and trajectory highlights based on the user's vertical scroll position.
+\end{itemize}
+
+\section{Data Structure and Assets}
+The application relies entirely on pre-compiled data stored within the \texttt{data/} directory. This structure ensures rapid loading times without requiring live database queries.
+
+\subsection{Data Directory (\texttt{data/})}
+\begin{itemize}
+    \item \textbf{Global Configurations:} Files such as \texttt{map\_config.json}, \texttt{elephant\_stats.json}, and \texttt{behavioral\_summaries.json} provide the baseline statistics and UI parameter configurations.
+    \item \textbf{Boundary Files:} GeoJSON files (e.g., \texttt{kw\_boundary.geojson}, \texttt{hv\_boundary.geojson}, \texttt{study\_area\_boundary.geojson}, \texttt{fence\_line.geojson}) define the spatial polygons rendered on the maps.
+    \item \textbf{Behavioral Points (\texttt{behavioral\_points/}):} Contains 6 large CSV files (one per elephant, E1 to E6). These files hold the high-resolution, temporally aligned GPS tracking data alongside their classified HMM behavioral states.
+    \item \textbf{RSF Maps (\texttt{rsf\_maps/}):} This directory holds the spatial outputs of the RSF models. It contains PNG raster overlays representing predicted "Usage" and "Realized" habitat selection, alongside JSON files that define the geographical bounding boxes required to accurately project each image onto the Leaflet maps.
+\end{itemize}
+
+\subsection{Asset Summary}
+To summarize the scale of the platform's static assets:
+\begin{itemize}
+    \item \textbf{Nodes:} 6 primary HTML pages.
+    \item \textbf{Data Files:} 6 dense CSV trajectory files, several GeoJSON spatial boundaries, and multiple JSON statistical summaries.
+    \item \textbf{Images:} Approximately 110+ high-resolution PNG raster overlays located in the \texttt{rsf\_maps} directory, utilized for RSF layer mapping.
+\end{itemize}
+
+\section{Deployment Considerations}
+Because the platform relies on fetching local CSV and JSON files via JavaScript (using the standard Fetch API), opening the HTML files directly from a local hard drive (using the \texttt{file://} protocol) will trigger standard browser Cross-Origin Resource Sharing (CORS) security restrictions. 
+
+For local testing and modifications, it is necessary to serve the directory through a local development server (e.g., \texttt{python -m http.server} or a VS Code Live Server extension). For live deployment, uploading the entire directory to a standard web hosting environment is sufficient.
+
+\end{document}

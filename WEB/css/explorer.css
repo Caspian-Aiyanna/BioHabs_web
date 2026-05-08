@@ -1,4 +1,4 @@
-﻿/* ===================================
+/* ===================================
    TRAJECTORY EXPLORER STYLES
    =================================== */
 
@@ -623,29 +623,28 @@
 
 .data-status {
     position: absolute;
-    top: var(--spacing-lg);
-    left: 50%;
-    transform: translateX(-50%);
+    top: 15px; /* Top left, beside Leaflet zoom controls */
+    left: 60px;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    max-width: 500px;
+    gap: var(--spacing-sm);
+    max-width: 300px;
     z-index: 1000;
 }
 
 .status-icon {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .status-message {
     color: var(--color-text-secondary);
-    font-size: 0.875rem;
-    line-height: 1.5;
+    font-size: 0.75rem;
+    line-height: 1.3;
 }
 
 .status-message strong {
@@ -762,26 +761,67 @@
         height: auto;
         min-height: calc(100vh - 72px);
         margin-top: 72px;
+        width: 100vw;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
     }
 
     .control-panel {
         border-right: none;
         border-bottom: 1px solid var(--glass-border);
         max-height: 45vh;
+        overflow-y: auto;
         z-index: 100;
     }
 
+    .period-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .behavior-filters-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .map-container {
-        height: 50vh;
+        height: auto;
+        display: flex;
+        flex-direction: column;
         order: 2;
+        width: calc(100% - 32px); /* 16px safe scrolling gutter on each side */
+        margin: var(--spacing-sm) auto; 
+        border-radius: var(--radius-md);
+        overflow: hidden; /* Clips the leaflet map to the rounded corners */
+        border: 1px solid var(--glass-border);
+    }
+
+    #map {
+        height: 50vh;
+        flex-shrink: 0;
     }
 
     .timeline-controls {
         position: relative;
-        bottom: 0;
+        bottom: auto;
         padding: var(--spacing-md);
         background: var(--color-bg-secondary);
         order: 3;
+    }
+
+    .timeline-header {
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+        justify-content: center;
+    }
+
+    .current-time {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .speed-control {
+        margin-top: 8px;
     }
 
     .playback-controls .control-btn {

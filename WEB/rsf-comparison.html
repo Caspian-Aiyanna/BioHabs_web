@@ -39,9 +39,9 @@
                 <li><a href="index.html" class="nav-link">Overview</a></li>
                 <li><a href="methodology.html" class="nav-link">Methodology</a></li>
                 <li><a href="explorer.html" class="nav-link">Trajectory Explorer</a></li>
-                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
                 <li><a href="ghost-fence.html" class="nav-link">Ghost Fence</a></li>
                 <li><a href="rsf-comparison.html" class="nav-link active">RSF Comparison</a></li>
+                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
             </ul>
             <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
                 <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
@@ -183,7 +183,46 @@
                     border-radius: 8px;
                 }
 
-
+                /* Mobile Responsiveness */
+                @media (max-width: 768px) {
+                    .global-controls {
+                        grid-template-columns: 1fr !important;
+                        gap: 8px !important;
+                        padding: 10px !important;
+                    }
+                    .global-controls h3 {
+                        font-size: 0.65rem !important;
+                        margin-bottom: 2px !important;
+                    }
+                    .layer-toggle-btn {
+                        padding: 3px 8px !important;
+                        font-size: 0.65rem !important;
+                    }
+                    .behavior-btn, .map-type-btn {
+                        padding: 4px 8px !important;
+                        font-size: 0.65rem !important;
+                    }
+                    .elephant-row {
+                        display: flex !important;
+                        flex-wrap: wrap !important;
+                        gap: 10px !important;
+                    }
+                    .elephant-sidebar {
+                        width: 100% !important;
+                    }
+                    .map-cell {
+                        flex: 1 1 calc(50% - 10px) !important;
+                    }
+                    .behavior-selector {
+                        flex-wrap: wrap;
+                    }
+                    .rsf-global-container {
+                        padding: 10px !important;
+                    }
+                    .map-cell[style*="visibility: hidden"] {
+                        display: none !important;
+                    }
+                }
             </style>
 
             <!-- FEMALES -->

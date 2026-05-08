@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <script>if(localStorage.getItem('theme')==='light') document.body.classList.add('light-theme');</script>
+    <script>if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');</script>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -47,12 +47,13 @@
                 <li><a href="index.html" class="nav-link active">Overview</a></li>
                 <li><a href="methodology.html" class="nav-link">Methodology</a></li>
                 <li><a href="explorer.html" class="nav-link">Trajectory Explorer</a></li>
-                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
                 <li><a href="ghost-fence.html" class="nav-link">Ghost Fence</a></li>
                 <li><a href="rsf-comparison.html" class="nav-link">RSF Comparison</a></li>
+                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
             </ul>
-                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
-                <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+                <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    style="display:none; width:20px; height:20px;">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -63,7 +64,8 @@
                     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
-                <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:block; width:20px; height:20px;">
+                <svg id="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    style="display:block; width:20px; height:20px;">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
             </button>
@@ -72,14 +74,16 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-background" style="background: linear-gradient(rgba(26, 34, 30, 0.5), rgba(26, 34, 30, 0.9)), url('elephants/WhatsApp Image 2025-05-30 at 21.05.56.jpeg'); background-size: cover; background-position: center; position: absolute; inset: 0; z-index: 1;"></div>
+        <div class="hero-background"
+            style="background: linear-gradient(rgba(26, 34, 30, 0.5), rgba(26, 34, 30, 0.9)), url('elephants/WhatsApp Image 2025-05-30 at 21.05.56.jpeg'); background-size: cover; background-position: center; position: absolute; inset: 0; z-index: 1;">
+        </div>
         <div class="hero-content">
             <h1 class="hero-title">
                 <span>Behavioral Habitat Maps &</span>
                 <span>Movement Analysis</span>
             </h1>
             <p class="hero-subtitle">
-                Here we explore behavioral trajectories, habitat selection patterns, and movement dynamics
+                This platform visualizes behavioral trajectories, habitat selection patterns, and movement dynamics
                 of 6 elephants across a natural BACI (Before-After Control-Impact) study design using advanced HMM
                 (Hidden Markov Models) and RSF (Resource Selection Function) models.
             </p>
@@ -212,7 +216,7 @@
                         </div>
                     </div>
                     <h3>Animated Trajectories</h3>
-                    <p>Watch elephant movements unfold over time with smooth animations, behavioral color coding, and
+                    <p>Visualize temporal elephant movements using animated, behaviorally-coded trajectories and
                         synchronized multi-elephant views.</p>
                     <a href="explorer.html" class="feature-link">Explore →</a>
                 </div>
@@ -246,28 +250,38 @@
     <section class="section section-dark">
         <div class="container">
             <h2 class="section-title">Kariega Study Area</h2>
-            <div class="study-area-layout" style="display: flex; gap: var(--spacing-2xl); align-items: center; flex-wrap: wrap;">
-                <div class="study-area-description" style="flex: 1; min-width: 300px;">
-                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.8;">The Kariega Game Reserve, located in the Eastern Cape province of South Africa, is a premier
-                        private wildlife conservancy spanning approximately 10,000 hectares (115 km²) along the
+            <div class="study-area-layout">
+                <div class="study-area-description">
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.8;">
+                        The Kariega Game Reserve, located in the Eastern Cape province of South Africa, is a private wildlife conservancy spanning approximately 10,000 hectares (115 km²) along the
                         Bushmans River. The reserve is dominated by dense, woody, and thorny semi-succulent
                         vegetation characteristic of the Albany Thicket biome.</p>
-                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.8;">Kariega supports a diverse assemblage of wildlife, including
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.8;">
+                        Kariega supports a diverse assemblage of wildlife, including
                         African elephant (<i>Loxodonta africana</i>), giraffe (<i>Giraffa camelopardalis</i>),
                         cheetah (<i>Acinonyx jubatus</i>), white and black rhinoceros (<i>Ceratotherium simum</i>
                         and <i>Diceros bicornis</i>), ostrich (<i>Struthio camelus</i>), and numerous avian and
                         reptile species.</p>
-                    <p style="color: var(--color-text-secondary); line-height: 1.8;">Initially, the elephant population (75 individuals) was divided by
+                    <p style="color: var(--color-text-secondary); line-height: 1.8;">Initially, the elephant population
+                        (75 individuals) was divided by
                         an internal fence into Kariega West (KW; 2,792 ha; 55 elephants) and Harvestvale (HV; 4,369
                         ha; 20 elephants). Fence removal in 2024 created a contiguous 8,192 ha landscape accessible
                         to the entire population.</p>
                 </div>
-                <div class="study-area-images-grid" style="flex: 1; min-width: 350px; display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md);">
-                    <div class="study-area-img-container" style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
-                        <img src="elephants/Study Area.jpg" alt="Study Area Map" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <div class="study-area-images-grid">
+                    <div class="study-area-img-container"
+                        style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
+                        <img src="elephants/Study Area.jpg" alt="Study Area Map"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.05)'"
+                            onmouseout="this.style.transform='scale(1)'">
                     </div>
-                    <div class="study-area-img-container" style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
-                        <img src="elephants/Vegetation_Classes_Map_with_Fence.png" alt="Vegetation and Fence Map" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <div class="study-area-img-container"
+                        style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
+                        <img src="elephants/Vegetation_Classes_Map_with_Fence.png" alt="Vegetation and Fence Map"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.05)'"
+                            onmouseout="this.style.transform='scale(1)'">
                     </div>
                 </div>
             </div>
@@ -279,9 +293,10 @@
         <div class="container">
             <h2 class="section-title">Meet the Elephants</h2>
             <p class="section-subtitle">Six elephants tracked across the BACI study periods, each with unique movement
-                patterns and behavioral adaptations. <strong>Hover over any card to view their alternate image.</strong></p>
-            
-            <div class="elephant-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); margin-top: var(--spacing-2xl);">
+                patterns and behavioral adaptations. <strong>Hover over any card to view their alternate image.</strong>
+            </p>
+
+            <div class="elephant-grid">
                 <!-- E1 Kamva -->
                 <div class="elephant-card male" data-elephant="E1">
                     <div class="elephant-image dual-image">
@@ -292,12 +307,17 @@
                         <h3>Kamva (E1)</h3><span class="data-badge">KW - Pre, Interim</span>
                     </div>
                     <div class="elephant-stats">
-                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Kariega West</span></div>
-                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre, Interim</span></div>
-                        <div class="mini-stat"><span class="mini-label">Foraging</span><span class="mini-value">38.5%</span></div>
-                        <div class="mini-stat"><span class="mini-label">Movement</span><span class="mini-value">14.5%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span
+                                class="mini-value">Kariega West</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre,
+                                Interim</span></div>
+                        <div class="mini-stat"><span class="mini-label">Foraging</span><span
+                                class="mini-value">38.5%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Movement</span><span
+                                class="mini-value">14.5%</span></div>
                     </div>
-                    <p class="elephant-desc">Ecological baseline in the Kariega West (KW) exclusion zone, demonstrating typical daily periodicity in foraging and maintenance behavior.</p>
+                    <p class="elephant-desc">Ecological baseline in the Kariega West (KW) exclusion zone, demonstrating
+                        typical daily periodicity in foraging and maintenance behavior.</p>
                 </div>
 
                 <!-- E2 Kambaku -->
@@ -310,12 +330,18 @@
                         <h3>Kambaku (E2)</h3><span class="data-badge">KW - Pre, Interim</span>
                     </div>
                     <div class="elephant-stats">
-                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Kariega West</span></div>
-                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre, Interim</span></div>
-                        <div class="mini-stat"><span class="mini-label">Foraging</span><span class="mini-value">31.2%</span></div>
-                        <div class="mini-stat"><span class="mini-label">Low-energy</span><span class="mini-value">30.4%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span
+                                class="mini-value">Kariega West</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre,
+                                Interim</span></div>
+                        <div class="mini-stat"><span class="mini-label">Foraging</span><span
+                                class="mini-value">31.2%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Low-energy</span><span
+                                class="mini-value">30.4%</span></div>
                     </div>
-                    <p class="elephant-desc">Pre and interim period data with stable movement patterns within established territory. Higher resting budget reflects older male energy-conservation strategy.</p>
+                    <p class="elephant-desc">Pre and interim period data with stable movement patterns within
+                        established territory. Higher resting budget reflects older male energy-conservation strategy.
+                    </p>
                 </div>
 
                 <!-- E6 Balu -->
@@ -328,12 +354,17 @@
                         <h3>Balu (E6)</h3><span class="data-badge">HV (Pre) / KW (Int)</span>
                     </div>
                     <div class="elephant-stats">
-                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Harvestvale</span></div>
-                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre, Interim</span></div>
-                        <div class="mini-stat"><span class="mini-label">Foraging</span><span class="mini-value">38.3%</span></div>
-                        <div class="mini-stat"><span class="mini-label">Movement</span><span class="mini-value">10.5%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span
+                                class="mini-value">Harvestvale</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">Pre,
+                                Interim</span></div>
+                        <div class="mini-stat"><span class="mini-label">Foraging</span><span
+                                class="mini-value">38.3%</span></div>
+                        <div class="mini-stat"><span class="mini-label">Movement</span><span
+                                class="mini-value">10.5%</span></div>
                     </div>
-                    <p class="elephant-desc">HV-origin male with high foraging budget. PRE baseline data provides cross-reserve behavioral comparison for the BACI design.</p>
+                    <p class="elephant-desc">HV-origin male with high foraging budget. PRE baseline data provides
+                        cross-reserve behavioral comparison for the BACI design.</p>
                 </div>
 
                 <!-- E3 Bukela -->
@@ -346,12 +377,17 @@
                         <h3>Bukela (E3)</h3><span class="data-badge complete">KW - All Periods</span>
                     </div>
                     <div class="elephant-stats">
-                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Kariega West</span></div>
-                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All 3</span></div>
-                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span class="mini-value">11.7%</span></div>
-                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span class="mini-value">17.6% ↑</span></div>
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span
+                                class="mini-value">Kariega West</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All
+                                3</span></div>
+                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span
+                                class="mini-value">11.7%</span></div>
+                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span
+                                class="mini-value">17.6% ↑</span></div>
                     </div>
-                    <p class="elephant-desc">Full BACI matriarch dataset. Shows +50% movement increase post-fence, reflecting successful range expansion into the novel Harvestvale landscape.</p>
+                    <p class="elephant-desc">Full BACI matriarch dataset. Shows +50% movement increase post-fence,
+                        reflecting successful range expansion into the novel Harvestvale landscape.</p>
                 </div>
 
                 <!-- E4 Half Moon -->
@@ -364,12 +400,17 @@
                         <h3>Half Moon (E4)</h3><span class="data-badge complete">KW - All Periods</span>
                     </div>
                     <div class="elephant-stats">
-                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Kariega West</span></div>
-                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All 3</span></div>
-                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span class="mini-value">12.5%</span></div>
-                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span class="mini-value">22.0% ↑↑</span></div>
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span
+                                class="mini-value">Kariega West</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All
+                                3</span></div>
+                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span
+                                class="mini-value">12.5%</span></div>
+                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span
+                                class="mini-value">22.0% ↑↑</span></div>
                     </div>
-                    <p class="elephant-desc">Matriarch exhibiting the Ghost Fence effect. Strong behavioral shift from routine foraging to exploration post-removal — highest spatial expansion in the cohort.</p>
+                    <p class="elephant-desc">Matriarch exhibiting the Ghost Fence effect. Significant behavioral shift from
+                        routine foraging to exploration post-removal, demonstrating the highest spatial expansion in the cohort.</p>
                 </div>
 
                 <!-- E5 Beauty -->
@@ -382,20 +423,24 @@
                         <h3>Beauty (E5)</h3><span class="data-badge complete">HV (Pre) / KW (All)</span>
                     </div>
                     <div class="elephant-stats">
-                        <div class="mini-stat"><span class="mini-label">Home Range</span><span class="mini-value">Harvestvale</span></div>
-                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All 3</span></div>
-                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span class="mini-value">4.3%</span></div>
-                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span class="mini-value">53.3% ↑↑↑</span></div>
+                        <div class="mini-stat"><span class="mini-label">Home Range</span><span
+                                class="mini-value">Harvestvale</span></div>
+                        <div class="mini-stat"><span class="mini-label">Periods</span><span class="mini-value">All
+                                3</span></div>
+                        <div class="mini-stat"><span class="mini-label">PRE Movement</span><span
+                                class="mini-value">4.3%</span></div>
+                        <div class="mini-stat"><span class="mini-label">POST Movement</span><span
+                                class="mini-value">53.3% ↑↑↑</span></div>
                     </div>
-                    <p class="elephant-desc">Most dramatic behavioral shift in the study. HV-origin female colonized novel KW territory post-fence, with movement comprising over half her POST budget.</p>
+                    <p class="elephant-desc">Exhibited the most pronounced behavioral shift in the cohort. This HV-origin female expanded into
+                        novel KW territory post-fence, with movement comprising over half her POST budget.</p>
                 </div>
             </div>
     </section>
 
     <!-- Partner Logos -->
     <section class="section" style="padding-top: var(--spacing-xl); padding-bottom: var(--spacing-3xl);">
-        <div class="container"
-            style="display: flex; justify-content: center; gap: var(--spacing-2xl); align-items: center; flex-wrap: wrap;">
+        <div class="container partners-grid">
             <div
                 style="background: white; padding: 10px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; height: 100px; min-width: 150px;">
                 <img src="elephants/CIRGEO.jpg" alt="CIRGEO"
@@ -433,10 +478,10 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="explorer.html">Trajectory Explorer</a></li>
-                        <li><a href="behavioral.html">Behavioral Analysis</a></li>
                         <li><a href="ghost-fence.html">Ghost Fence</a></li>
                         <li><a href="rsf-comparison.html">RSF Comparison</a></li>
                         <li><a href="methodology.html">Methodology</a></li>
+                        <li><a href="behavioral.html">Behavioral Analysis</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

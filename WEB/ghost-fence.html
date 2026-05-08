@@ -46,9 +46,9 @@
                 <li><a href="index.html" class="nav-link">Overview</a></li>
                 <li><a href="methodology.html" class="nav-link">Methodology</a></li>
                 <li><a href="explorer.html" class="nav-link">Trajectory Explorer</a></li>
-                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
                 <li><a href="ghost-fence.html" class="nav-link active">Ghost Fence</a></li>
                 <li><a href="rsf-comparison.html" class="nav-link">RSF Comparison</a></li>
+                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
             </ul>
             <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
                 <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
@@ -82,11 +82,11 @@
 
         <!-- SECTION 2: THE DATA & ANIMATION -->
         <section class="data-section scrolly-section" style="margin-bottom: 2rem;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div class="ghost-top-grid">
                 
                 <!-- Bounce Stats & Explanation -->
                 <div class="card stat-summary" style="display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; padding: 20px;">
-                    <div class="interaction-stats" style="display: flex; gap: 2rem; justify-content: space-around;">
+                    <div class="interaction-stats">
                         <div class="big-stat" style="text-align: center;">
                             <span class="stat-label" style="display: block; font-size: 0.9rem; color: var(--color-text-secondary);">Total "Bounce" Events</span>
                             <span class="stat-value" id="total-bounces" style="display: block; font-size: 2.5rem; font-weight: 800; color: var(--color-accent-primary);">0</span>
@@ -103,7 +103,7 @@
                     <div class="bounce-explanation" style="background: rgba(228, 26, 28, 0.1); padding: 15px; border-left: 4px solid var(--color-accent-primary); border-radius: var(--radius-sm);">
                         <h4 style="margin: 0 0 10px 0; color: var(--color-text-primary);">What is a "Bounce"?</h4>
                         <p style="margin: 0; font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.5;">
-                            A bounce is recorded when an elephant exhibits a <strong>sharp turning angle within the fence buffer</strong>—moving towards the boundary and then abruptly retreating. It indicates a behavioral response to the historical or "ghost" boundary, where the spatial memory of the physical fence continues to act as a mental barrier.
+                            A bounce is recorded when an elephant exhibits a <strong>sharp turning angle within the fence buffer</strong>, moving towards the boundary and then abruptly retreating. It indicates a behavioral response to the historical or "ghost" boundary, where the spatial memory of the physical fence continues to act as a mental barrier.
                         </p>
                     </div>
                 </div>
@@ -202,7 +202,7 @@
             <div class="card individual-stats-container" style="display: flex; flex-direction: column; padding: 20px; margin-bottom: 2rem;">
                 <h3 style="margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px;">Individual Buffer Behaviors</h3>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="ghost-profile-grid">
                     <!-- Elephant E3 Stats -->
                     <div class="elephant-stat-card" style="background: var(--color-bg-secondary); border-radius: var(--radius-md); padding: 15px;">
                         <div class="elephant-mini-profile" style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
@@ -234,7 +234,7 @@
             <!-- Behavior definitions 1x6 row (smaller) -->
             <div class="behavior-definitions card" style="padding: 15px 20px;">
                 <h4 style="margin: 0 0 15px 0; text-align: left; font-size: 0.9rem; color: var(--color-text-secondary); text-transform: uppercase;">Behavioral Class Definitions</h4>
-                <div class="def-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px;">
+                <div class="def-grid">
                     <div class="def-item def-bounce">
                         <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
                             <span style="width: 10px; height: 10px; border-radius: 50%; background: #E41A1C; display: inline-block;"></span>
@@ -286,8 +286,8 @@
             <div class="narrative-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: center;">
                 <div class="narrative-text">
                     <h3>Insights from the Interim Phase</h3>
-                    <p>During the <strong>Interim Period</strong> (Dec 9, 2023 - Feb 9, 2024), we observe a fascinating phenomenon: the physical fence was being removed, and the elephants' spatial memory was dictating their movement patterns. Gradually expanding to the novel terroitory the habitat selection and the behavioral dynamics of each individual is shaped by the landscape change.</p>
-                    <p><strong>Elephant E4 (Half Moon)</strong> exhibited a unique "Fence" interaction. Even with the path being open, her trajectory shows repeated "bounces" near the old boundary after crossing into the novel territory. This entails the xploratory behavior of Half Moon and on the other hand, Bukela took its own time to enter into the new ecosystem (after 60 days of fence removal)</p>
+                    <p>During the <strong>Interim Phase</strong> (Dec 9, 2023 - Feb 9, 2024), spatial memory continued to strongly influence movement patterns despite the removal of the physical boundary. As individuals gradually expanded into novel territory, their habitat selection and behavioral dynamics adjusted to the altered landscape.</p>
+                    <p><strong>Elephant E4 (Half Moon)</strong> exhibited pronounced "Ghost Fence" interactions. Despite the physical boundary removal, her trajectory shows repeated "bounces" along the former fenceline prior to crossing into the novel territory. This rapid exploratory behavior contrasts with E3, who exhibited a 60-day latency period before entering the newly accessible area.</p>
                     
                     <!-- PERIOD CONTROLS MOVED HERE -->
                     <div class="map-controls" style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: flex-start; gap: 2rem; background: var(--color-bg-secondary); padding: 15px; border-radius: var(--radius-md);">

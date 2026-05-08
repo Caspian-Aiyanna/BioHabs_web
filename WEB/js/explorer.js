@@ -16,9 +16,9 @@ const ELEPHANT_INFO = {
 // Global state
 const FilterManager = {}; // Data Filtering Namespace
 let map = null;
-let currentElephant = null;
-let activeElephants = [];
-let currentPeriod = 'pre';
+let currentElephant = 'E4';
+let activeElephants = ['E4'];
+let currentPeriod = 'interim';
 let trajectories = {}; // Store processed data for active elephants: { 'E1': [...] }
 let rawDatasets = {};  // Store full raw datasets per elephant (NOW PRE-PROCESSED)
 let trajectoryData = null; // Primary focused data (usually trajectories[currentElephant])
@@ -321,7 +321,7 @@ FilterManager.filterDataByPeriod = function() {
     }
 
     if (activeElephants.length > 0 && !trajectoryData) {
-        showDataStatus('warning', `No data found for ${currentPeriod.toUpperCase()}`);
+        showDataStatus('warning', `<span style="color: #ef4444; font-weight: 700;">No data found for ${currentPeriod.toUpperCase()}</span>`);
         return;
     }
 

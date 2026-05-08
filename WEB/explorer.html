@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -48,9 +48,9 @@
                 <li><a href="index.html" class="nav-link">Overview</a></li>
                 <li><a href="methodology.html" class="nav-link">Methodology</a></li>
                 <li><a href="explorer.html" class="nav-link active">Trajectory Explorer</a></li>
-                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
                 <li><a href="ghost-fence.html" class="nav-link">Ghost Fence</a></li>
                 <li><a href="rsf-comparison.html" class="nav-link">RSF Comparison</a></li>
+                <li><a href="behavioral.html" class="nav-link">Behavioral Analysis</a></li>
             </ul>
                     <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
                 <svg id="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display:none; width:20px; height:20px;">
@@ -179,8 +179,8 @@
                     style="grid-template-columns: repeat(3, 1fr); font-size: 0.7rem; gap: 4px; margin-top: 8px;">
                     <div class="legend-item"><span class="legend-color Resting"></span> Sl: <strong
                             id="Resting-pct">0%</strong></div>
-                    <div class="legend-item"><span class="legend-color resting"></span> Lo: <strong
-                            id="resting-pct">0%</strong></div>
+                    <div class="legend-item"><span class="legend-color low-energy"></span> Lo: <strong
+                            id="Low-energy-pct">0%</strong></div>
                     <div class="legend-item"><span class="legend-color foraging"></span> Fo: <strong
                             id="foraging-pct">0%</strong></div>
                     <div class="legend-item"><span class="legend-color movement"></span> Mo: <strong
@@ -260,18 +260,6 @@
                 </div>
             </div>
 
-            <!-- Welcome Overlay (Start Screen) -->
-            <div class="loading-overlay" id="welcome-overlay" style="z-index: 1001;">
-                <div style="font-size: 4rem; margin-bottom: 20px;">🐘</div>
-                <h2 style="color: var(--color-text-primary); font-size: 2rem; margin-bottom: 10px;">Begin Your Journey</h2>
-                <p style="font-size: 1.2rem; max-width: 400px; text-align: center; line-height: 1.6;">
-                    Please choose one or more elephants from the right panel to visualize their movement patterns across
-                    the Kariega landscape.
-                </p>
-                <div style="margin-top: 30px; opacity: 0.6; font-size: 0.9rem;">
-                    Select an Elephant →
-                </div>
-            </div>
 
             <!-- Loading Indicator (Processing State) -->
             <div class="loading-overlay" id="loading" style="display: none;">
@@ -314,11 +302,11 @@
             <div class="panel-section">
                 <h3 class="panel-title">Study Period</h3>
                 <div class="period-selector">
-                    <button class="period-btn active" data-period="pre">
+                    <button class="period-btn" data-period="pre">
                         <span class="period-label">PRE - HOME RANGE</span>
                         <span class="period-desc">Before Removal</span>
                     </button>
-                    <button class="period-btn" data-period="interim">
+                    <button class="period-btn active" data-period="interim">
                         <span class="period-label">Interim</span>
                         <span class="period-desc">During Removal</span>
                     </button>
